@@ -93,12 +93,12 @@ module.exports = grammar({
       $.item,
       $.path,
       $.selector_key,
-      $._selector_number,
+      $.selector_number,
       $.number,
       $.boolean,
       $.selector_object
     ),
-    _selector_number: $ => prec.right(1, choice(
+    selector_number: $ => prec.right(1, choice(
       seq(
         "..",
         $.number
@@ -119,7 +119,7 @@ module.exports = grammar({
       repeat(
         seq(
           choice(
-            $.selector_nbt,
+            // $.selector_nbt,
             $.selector_score
           ),
           optional(",")
@@ -133,9 +133,9 @@ module.exports = grammar({
       $.nbt_object_value
     ),
     selector_score: $ => seq(
-      $.selector_key,
+      field("selector_score_key", $.selector_key),
       "=",
-      $._selector_number
+      field("selector_score_value", $.selector_number)
     ),
     _namespace: $ => /[a-z_-]+:/,
     item: $ => seq(
