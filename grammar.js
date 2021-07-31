@@ -59,7 +59,7 @@ module.exports = grammar({
       "\""
     ),
     _escape_sequence: $ => seq("\\", "\""),
-    selector: $ => prec.right(seq(
+    selector: $ => seq(
       token(
         seq(
           "@",
@@ -71,21 +71,23 @@ module.exports = grammar({
       optional(
         seq(
           token.immediate("["),
-          repeat(
-            $.selector_options
+          optional(
+            repeat(
+              seq(
+                $.selector_options,
+                optional(",")
+              )
+            )
           ),
           "]"
         )
       ),
-    )),
-    selector_options: $ => prec.right(repeat1(
-      seq(
-        $.selector_key,
-        "=",
-        $.selector_value,
-        optional(",")
-      )
-    )),
+    ),
+    selector_options: $ => seq(
+      $.selector_key,
+      "=",
+      $.selector_value
+    ),
     selector_key: $ => /[a-z_-]+/,
     selector_value: $ => choice(
       $.item,
@@ -111,29 +113,37 @@ module.exports = grammar({
         ".."
       )
     ),
-    selector_object: $ => seq(
-      "{",
-      optional(choice(
-        $.selector_scores,
-        $.selector_nbt
-      )),
-      "}"
-    ),
-    selector_nbt: $ => repeat1(
+    selector_object: $ => choice(
       seq(
-        $.nbt_object_key,
-        ":",
-        $.nbt_object_value,
-        optional(",")
+        "{",
+        repeat(
+          seq(
+            $.selector_scores,
+            optional(",")
+          )
+        ),
+        "}"
+      ),
+      seq(
+        "{",
+        repeat(
+          seq(
+            $.selector_nbt,
+            optional(",")
+          )
+        ),
+        "}"
       )
     ),
-    selector_scores: $ => repeat1(
-      seq(
-        $.selector_key,
-        "=",
-        $._selector_number,
-        optional(",")
-      )
+    selector_nbt: $ => seq(
+      $.nbt_object_key,
+      ":",
+      $.nbt_object_value
+    ),
+    selector_scores: $ => seq(
+      $.selector_key,
+      "=",
+      $._selector_number
     ),
     _namespace: $ => /[a-z_-]+:/,
     item: $ => seq(
