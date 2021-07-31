@@ -129,7 +129,7 @@ module.exports = grammar({
       ),
       "}"
     ),
-    nbt_array: $ => prec(1, seq(
+    nbt_array: $ => seq(
       "[",
       repeat(
         seq(
@@ -138,7 +138,7 @@ module.exports = grammar({
         )
       ),
       "]"
-    )),
+    ),
     nbt_object_key: $ => choice(
       $.string,
       $.number,
