@@ -351,7 +351,7 @@
       "required": false,
       "types": [
         {
-          "type": "selector_options",
+          "type": "selector_option",
           "named": true
         }
       ]
@@ -396,7 +396,7 @@
     }
   },
   {
-    "type": "selector_options",
+    "type": "selector_option",
     "named": true,
     "fields": {},
     "children": {

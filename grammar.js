@@ -74,7 +74,7 @@ module.exports = grammar({
           optional(
             repeat(
               seq(
-                $.selector_options,
+                $.selector_option,
                 optional(",")
               )
             )
@@ -83,7 +83,7 @@ module.exports = grammar({
         )
       ),
     ),
-    selector_options: $ => seq(
+    selector_option: $ => seq(
       $.selector_key,
       "=",
       $.selector_value
@@ -98,7 +98,7 @@ module.exports = grammar({
       $.boolean,
       $.selector_object
     ),
-    _selector_number: $ => choice(
+    _selector_number: $ => prec.right(1, choice(
       seq(
         "..",
         $.number
@@ -111,29 +111,21 @@ module.exports = grammar({
       seq(
         $.number,
         ".."
-      )
-    ),
-    selector_object: $ => choice(
-      seq(
-        "{",
-        repeat(
-          seq(
-            $.selector_scores,
-            optional(",")
-          )
-        ),
-        "}"
       ),
-      seq(
-        "{",
-        repeat(
-          seq(
+      $.number
+    )),
+    selector_object: $ => seq(
+      "{",
+      repeat(
+        seq(
+          choice(
             $.selector_nbt,
-            optional(",")
-          )
-        ),
-        "}"
-      )
+            $.selector_scores
+          ),
+          optional(",")
+        )
+      ),
+      "}"
     ),
     selector_nbt: $ => seq(
       $.nbt_object_key,
