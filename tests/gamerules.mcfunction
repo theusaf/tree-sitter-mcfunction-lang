@@ -1,0 +1,14 @@
+gamerule announceAdvancements true
+gamerule commandBlockOutput true
+gamerule disableElytraMovementCheck true
+gamerule doDaylightCycle true
+gamerule doEntityDrops true
+gamerule doFireTick true
+gamerule doLimitedCrafting false
+gamerule doMobloot true
+gamerule doMobSpawning true
+gamerule doTileDrops true
+gamerule gameLoopFunction value
+gamerule maxCommandChainLength 65536
+gamerule maxEntityCramming 24
+gamerule randomTickSpeed 3
