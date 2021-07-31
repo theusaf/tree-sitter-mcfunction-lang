@@ -68,20 +68,24 @@ module.exports = grammar({
           )
         )
       ),
-      repeat(
-        $.selector_options
-      )
+      optional(
+        seq(
+          token.immediate("["),
+          repeat(
+            $.selector_options
+          ),
+          "]"
+        )
+      ),
     )),
     selector_options: $ => seq(
-      "[",
       $.selector_key,
       "=",
       $.selector_value,
-      "]",
       optional(",")
     ),
     selector_key: $ => /[a-z_-]+/,
-    selector_value: $ => choice(
+    selector_value: $ => prec.right(choice(
       $.item,
       $.path,
       /[a-z_-]+/,
@@ -101,7 +105,7 @@ module.exports = grammar({
       $.number,
       $.boolean,
       $.nbt
-    ),
+    )),
     _namespace: $ => /[a-z_-]+:/,
     item: $ => seq(
       $._namespace,
