@@ -114,18 +114,27 @@ module.exports = grammar({
       ),
       $.number
     )),
-    selector_object: $ => seq(
-      "{",
-      repeat(
-        seq(
-          choice(
-            // $.selector_nbt,
-            $.selector_score
-          ),
-          optional(",")
-        )
+    selector_object: $ => choice(
+      seq(
+        "{",
+        repeat(
+          seq(
+            $.selector_score,
+            optional(",")
+          )
+        ),
+        "}"
       ),
-      "}"
+      seq(
+        "{",
+        repeat(
+          seq(
+            $.selector_nbt,
+            optional(",")
+          )
+        ),
+        "}"
+      )
     ),
     selector_nbt: $ => seq(
       $.nbt_object_key,

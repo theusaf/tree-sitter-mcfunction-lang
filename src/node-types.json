@@ -358,6 +358,25 @@
     }
   },
   {
+    "type": "selector_nbt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "nbt_object_key",
+          "named": true
+        },
+        {
+          "type": "nbt_object_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "selector_number",
     "named": true,
     "fields": {},
@@ -380,6 +399,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "selector_nbt",
+          "named": true
+        },
         {
           "type": "selector_score",
           "named": true
