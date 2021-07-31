@@ -84,7 +84,17 @@
   {
     "type": "item",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "selector_key",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "location",
@@ -348,9 +358,42 @@
     }
   },
   {
-    "type": "selector_key",
+    "type": "selector_nbt",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "nbt_object_key",
+          "named": true
+        },
+        {
+          "type": "nbt_object_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "selector_object",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "selector_nbt",
+          "named": true
+        },
+        {
+          "type": "selector_scores",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "selector_options",
@@ -372,12 +415,31 @@
     }
   },
   {
+    "type": "selector_scores",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "selector_key",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "selector_value",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "boolean",
@@ -388,15 +450,19 @@
           "named": true
         },
         {
-          "type": "nbt",
-          "named": true
-        },
-        {
           "type": "number",
           "named": true
         },
         {
           "type": "path",
+          "named": true
+        },
+        {
+          "type": "selector_key",
+          "named": true
+        },
+        {
+          "type": "selector_object",
           "named": true
         }
       ]
@@ -482,6 +548,10 @@
   {
     "type": "s",
     "named": false
+  },
+  {
+    "type": "selector_key",
+    "named": true
   },
   {
     "type": "true",

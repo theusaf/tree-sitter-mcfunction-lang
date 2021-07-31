@@ -78,38 +78,67 @@ module.exports = grammar({
         )
       ),
     )),
-    selector_options: $ => seq(
-      $.selector_key,
-      "=",
-      $.selector_value,
-      optional(",")
-    ),
+    selector_options: $ => prec.right(repeat1(
+      seq(
+        $.selector_key,
+        "=",
+        $.selector_value,
+        optional(",")
+      )
+    )),
     selector_key: $ => /[a-z_-]+/,
-    selector_value: $ => prec.right(choice(
+    selector_value: $ => choice(
       $.item,
       $.path,
-      /[a-z_-]+/,
+      $.selector_key,
+      $._selector_number,
+      $.number,
+      $.boolean,
+      $.selector_object
+    ),
+    _selector_number: $ => choice(
+      seq(
+        "..",
+        $.number
+      ),
+      seq(
+        $.number,
+        "..",
+        $.number
+      ),
       seq(
         $.number,
         ".."
-      ),
+      )
+    ),
+    selector_object: $ => seq(
+      "{",
+      optional(choice(
+        $.selector_scores,
+        $.selector_nbt
+      )),
+      "}"
+    ),
+    selector_nbt: $ => repeat1(
       seq(
-        "..",
-        $.number
-      ),
+        $.nbt_object_key,
+        ":",
+        $.nbt_object_value,
+        optional(",")
+      )
+    ),
+    selector_scores: $ => repeat1(
       seq(
-        $.number,
-        "..",
-        $.number
-      ),
-      $.number,
-      $.boolean,
-      $.nbt
-    )),
+        $.selector_key,
+        "=",
+        $._selector_number,
+        optional(",")
+      )
+    ),
     _namespace: $ => /[a-z_-]+:/,
     item: $ => seq(
       $._namespace,
-      /[a-z_-]+/
+      $.selector_key
     ),
     path: $ => seq(
       choice($.item, /[a-z_]+/),
