@@ -120,7 +120,7 @@ module.exports = grammar({
         seq(
           choice(
             $.selector_nbt,
-            $.selector_scores
+            $.selector_score
           ),
           optional(",")
         )
@@ -132,7 +132,7 @@ module.exports = grammar({
       ":",
       $.nbt_object_value
     ),
-    selector_scores: $ => seq(
+    selector_score: $ => seq(
       $.selector_key,
       "=",
       $._selector_number
