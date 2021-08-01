@@ -32,6 +32,10 @@
           "named": true
         },
         {
+          "type": "coordinate",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -498,15 +502,7 @@
     "named": false
   },
   {
-    "type": ".",
-    "named": false
-  },
-  {
     "type": "..",
-    "named": false
-  },
-  {
-    "type": "/",
     "named": false
   },
   {

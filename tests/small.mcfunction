@@ -1,4 +1,7 @@
-# tellraw @s [{"string":"value", foo:"bar", list:[1,2,3]}]
-# tellraw @a[distance=..1] {nest:{nest2:{nest11:5l}}}
-# tellraw @e[nbt={foo:"bar"}] [{text:"go away"}]
-tell @a[nbt={this_is_score:true}]
+#spreadplayers ~ ~ 0 0 under 256 false @e
+spreadplayers ~ ~ 0 0 true @a
+#playsound minecraft:ambient.underwater.loop.additions record @r ~ ~ ~ 1 0 0
+#particle minecraft:ash ~ ~ ~ ~ ~ ~ 1 1 normal
+#experience add @s 1 points
+#execute align xy rotated as @s in overworld positioned as @s anchored eyes facing entity @s eyes if entity @s if blocks ~ ~ ~ ~ ~ ~ ~ ~ ~ masked offset ~ ~ ~ store success block ~ ~ ~ path double 1 run experience query @s points
+#effect give @s minecraft:conduit_power 10 0 false

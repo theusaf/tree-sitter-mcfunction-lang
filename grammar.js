@@ -16,6 +16,7 @@ module.exports = grammar({
           $.number,
           $.location,
           $.rotation,
+          $.coordinate,
           $.boolean,
           $.string,
           $.selector,
@@ -33,20 +34,20 @@ module.exports = grammar({
       "true",
       "false"
     ),
-    coordinate: $ => choice(
+    coordinate: $ => prec(2, choice(
       $.number,
       "~"
-    ),
+    )),
     rotation: $ => seq(
       field("x", $.coordinate),
-      " ",
+      token.immediate(" "),
       field("y", $.coordinate)
     ),
     location: $ => seq(
       field("x", $.coordinate),
-      " ",
+      token.immediate(" "),
       field("y", $.coordinate),
-      " ",
+      token.immediate(" "),
       field("z", $.coordinate)
     ),
     string: $ => seq(
@@ -156,13 +157,21 @@ module.exports = grammar({
     path: $ => seq(
       choice($.item, /[a-z_]+/),
       repeat1(
-        token("/", /[a-z_]/)
+        token(
+          seq(
+            "/", /[a-z_]+/
+          )
+        )
       )
     ),
     container: $ => seq(
       choice($.item, /[a-z_]+/),
       repeat1(
-        token(".", /[a-z_]/)
+        token(
+          seq(
+            ".", /[a-z_]+/
+          )
+        )
       )
     ),
     nbt: $ => choice(
