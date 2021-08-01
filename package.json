@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-mcfunction-lang",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "tree sitter for mcfunction-lang",
   "main": "bindings/node",
   "scripts": {
