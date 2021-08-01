@@ -668,6 +668,109 @@
         {
           "type": "PATTERN",
           "value": "[a-z_-]+"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "item_state"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "item_state": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "PATTERN",
+          "value": " *"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": " *"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "state_key"
+              },
+              {
+                "type": "PATTERN",
+                "value": " *"
+              },
+              {
+                "type": "STRING",
+                "value": "="
+              },
+              {
+                "type": "PATTERN",
+                "value": " *"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "state_value"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": " *"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "state_key": {
+      "type": "PATTERN",
+      "value": "[a-z_-]+"
+    },
+    "state_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[a-z_-]+"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "boolean"
         }
       ]
     },

@@ -115,7 +115,36 @@
   {
     "type": "item",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "item_state",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "item_state",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "state_key",
+          "named": true
+        },
+        {
+          "type": "state_value",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "location",
@@ -404,6 +433,30 @@
         },
         {
           "type": "selector_number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "state_key",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "state_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         }
       ]

@@ -170,7 +170,35 @@ module.exports = grammar({
     ),
     item: $ => seq(
       optional(CONSTS.NAMESPACE),
-      CONSTS.IDENTIFIER
+      CONSTS.IDENTIFIER,
+      optional(
+        choice(
+          $.item_state
+        )
+      )
+    ),
+    item_state: $ => seq(
+      "[",
+      CONSTS.WHITESPACE,
+      repeat(
+        seq(
+          CONSTS.WHITESPACE,
+          $.state_key,
+          CONSTS.WHITESPACE,
+          "=",
+          CONSTS.WHITESPACE,
+          $.state_value,
+          optional(",")
+        )
+      ),
+      CONSTS.WHITESPACE,
+      "]"
+    ),
+    state_key: $ => CONSTS.IDENTIFIER,
+    state_value: $ => choice(
+      $.number,
+      CONSTS.IDENTIFIER,
+      $.boolean
     ),
     path: $ => seq(
       optional(CONSTS.NAMESPACE),
