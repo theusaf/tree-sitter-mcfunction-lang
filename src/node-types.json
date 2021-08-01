@@ -33,11 +33,20 @@
           "named": true
         },
         {
+          "type": "selector",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "command_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "comment",
@@ -141,6 +150,64 @@
     }
   },
   {
+    "type": "selector",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "selector_option_section",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "selector_key",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "selector_option_section",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "selector_key",
+          "named": true
+        },
+        {
+          "type": "selector_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "selector_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "string",
     "named": true,
     "fields": {}
@@ -154,7 +221,23 @@
     "named": false
   },
   {
+    "type": ",",
+    "named": false
+  },
+  {
     "type": "/",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "[",
     "named": false
   },
   {
@@ -162,8 +245,16 @@
     "named": false
   },
   {
-    "type": "command_name",
-    "named": true
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "a",
+    "named": false
+  },
+  {
+    "type": "e",
+    "named": false
   },
   {
     "type": "false",
@@ -172,6 +263,18 @@
   {
     "type": "number",
     "named": true
+  },
+  {
+    "type": "p",
+    "named": false
+  },
+  {
+    "type": "r",
+    "named": false
+  },
+  {
+    "type": "s",
+    "named": false
   },
   {
     "type": "true",

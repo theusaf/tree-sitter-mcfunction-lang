@@ -72,9 +72,9 @@ module.exports = grammar({
     selector: $ => seq(
       "@",
       choice("p", "a", "r", "s", "e"),
-      //optional($.selector_option_section)
+      optional($.selector_option_section)
     ),
-    /*selector_option_section: $ => seq(
+    selector_option_section: $ => seq(
       "[",
       optional(
         repeat(
@@ -91,11 +91,11 @@ module.exports = grammar({
       "=",
       $.selector_value
     ),
-    selector_key: $ => CONSTS.identifier,
+    selector_key: $ => CONSTS.IDENTIFIER,
     selector_value: $ => choice(
-      CONSTS.identifier,
+      CONSTS.IDENTIFIER,
       $.boolean,
       $.number
-    )*/
+    )
   }
 });
