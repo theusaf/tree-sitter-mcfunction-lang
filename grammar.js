@@ -79,14 +79,14 @@ module.exports = grammar({
       optional(
         repeat(
           seq(
-            $._selector_option,
+            $.selector_option,
             optional(",")
           )
         )
       ),
       "]"
     ),
-    _selector_option: $ => seq(
+    selector_option: $ => seq(
       $.selector_key,
       "=",
       $.selector_value
