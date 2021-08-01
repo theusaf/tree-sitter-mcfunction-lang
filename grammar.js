@@ -101,21 +101,33 @@ module.exports = grammar({
       $.selector_object
     ),
     selector_number: $ => prec.right(1, choice(
-      seq(
-        "..",
-        $.number
-      ),
-      seq(
-        $.number,
-        "..",
-        $.number
-      ),
-      seq(
-        $.number,
-        ".."
-      ),
+      /\.\.-?\d+(\.\d+)?/,
+      /-?\d+(\.\d+)?\.\.-?\d+(\.\d+)?/,
+      /-?\d+(\.\d+)?\.\./,
       $.number
     )),
+    selector_object_old: $ => choice(
+      seq(
+        "{",
+        repeat(
+          seq(
+            $.selector_score,
+            optional(",")
+          )
+        ),
+        "}"
+      ),
+      seq(
+        "{",
+        repeat(
+          seq(
+            $.selector_nbt,
+            optional(",")
+          )
+        ),
+        "}"
+      )
+    ),
     // FIXME: This is a hack, but it allows for incorrect syntaxes.
     // Related StackOverFlow question: https://stackoverflow.com/questions/68606558/tree-sitter-match-for-similar-structures
     selector_object: $ => seq(

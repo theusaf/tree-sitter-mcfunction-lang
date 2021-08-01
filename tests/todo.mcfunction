@@ -1,3 +1,4 @@
+spreadplayers ~ ~ 0 0 under 256 false @e
 # spreadplayers ~ ~ 0 0 true @a
 # particle minecraft:ash ~ ~ ~ ~ ~ ~ 1 1 normal
 # experience add @s 1 points

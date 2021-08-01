@@ -381,12 +381,31 @@
     }
   },
   {
-    "type": "selector_number",
+    "type": "selector_nbt",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
       "required": true,
+      "types": [
+        {
+          "type": "nbt_object_key",
+          "named": true
+        },
+        {
+          "type": "nbt_object_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "selector_number",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
       "types": [
         {
           "type": "number",
@@ -439,6 +458,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "selector_score",
+    "named": true,
+    "fields": {
+      "selector_score_key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "selector_key",
+            "named": true
+          }
+        ]
+      },
+      "selector_score_value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "selector_number",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -499,10 +544,6 @@
   },
   {
     "type": ",",
-    "named": false
-  },
-  {
-    "type": "..",
     "named": false
   },
   {
