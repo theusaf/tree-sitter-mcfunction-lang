@@ -1,6 +1,7 @@
 const CONSTS = {
   COMMENT: /#.*/,
   WORD: /[A-Za-z][\w-]+/,
+  NBT_IDENTIFIER: /[A-Za-z]\w+/,
   IDENTIFIER: /[a-z_-]+/,
   WHITESPACE: / */,
   NAMESPACE: /[a-z_-]+:/
@@ -43,7 +44,8 @@ module.exports = grammar({
             $.selector,
             $.path,
             $.container,
-            $.item
+            $.item,
+            $.nbt_path
           )
         )
       )
@@ -143,5 +145,6 @@ module.exports = grammar({
         )
       )
     ),
+    nbt_path: $ => /([A-Za-z]\w+)((\[\d+\])*(\.|\/)([A-Za-z]\w+))+/
   }
 });

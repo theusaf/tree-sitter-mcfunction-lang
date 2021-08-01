@@ -1,4 +1,1 @@
-# comment
-test @a word true ~ ~ ~
-test @a[ options = true , foo =  1, bar   = ..1  ] true
-test item.container.1 this/is/a/path minecraft:foo
+test regular/path container.0 item:item Some.NBT/Path[9][0].foo

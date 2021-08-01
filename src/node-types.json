@@ -33,6 +33,10 @@
           "named": true
         },
         {
+          "type": "nbt_path",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -334,6 +338,10 @@
   {
     "type": "false",
     "named": false
+  },
+  {
+    "type": "nbt_path",
+    "named": true
   },
   {
     "type": "number",

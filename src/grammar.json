@@ -99,6 +99,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "item"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "nbt_path"
                   }
                 ]
               }
@@ -526,6 +530,10 @@
           }
         }
       ]
+    },
+    "nbt_path": {
+      "type": "PATTERN",
+      "value": "([A-Za-z]\\w+)((\\[\\d+\\])*(\\.|\\/)([A-Za-z]\\w+))+"
     }
   },
   "extras": [],
