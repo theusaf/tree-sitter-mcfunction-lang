@@ -17,11 +17,23 @@
           "named": true
         },
         {
+          "type": "command",
+          "named": true
+        },
+        {
           "type": "command_name",
           "named": true
         },
         {
           "type": "container",
+          "named": true
+        },
+        {
+          "type": "execute_command",
+          "named": true
+        },
+        {
+          "type": "execute_keyword",
           "named": true
         },
         {
@@ -102,6 +114,81 @@
       "types": [
         {
           "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "execute_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "command",
+          "named": true
+        },
+        {
+          "type": "command_name",
+          "named": true
+        },
+        {
+          "type": "container",
+          "named": true
+        },
+        {
+          "type": "execute_command",
+          "named": true
+        },
+        {
+          "type": "execute_keyword",
+          "named": true
+        },
+        {
+          "type": "invalid_comment",
+          "named": true
+        },
+        {
+          "type": "item",
+          "named": true
+        },
+        {
+          "type": "location",
+          "named": true
+        },
+        {
+          "type": "nbt",
+          "named": true
+        },
+        {
+          "type": "nbt_path",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "path",
+          "named": true
+        },
+        {
+          "type": "rotation",
+          "named": true
+        },
+        {
+          "type": "selector",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -525,6 +612,10 @@
           "named": true
         },
         {
+          "type": "selector_number",
+          "named": true
+        },
+        {
           "type": "selector_score_key",
           "named": true
         },
@@ -613,6 +704,22 @@
     "named": false
   },
   {
+    "type": "align",
+    "named": false
+  },
+  {
+    "type": "anchored",
+    "named": false
+  },
+  {
+    "type": "as",
+    "named": false
+  },
+  {
+    "type": "at",
+    "named": false
+  },
+  {
     "type": "b",
     "named": false
   },
@@ -625,11 +732,27 @@
     "named": false
   },
   {
+    "type": "execute_keyword",
+    "named": true
+  },
+  {
     "type": "f",
     "named": false
   },
   {
+    "type": "facing",
+    "named": false
+  },
+  {
     "type": "false",
+    "named": false
+  },
+  {
+    "type": "if",
+    "named": false
+  },
+  {
+    "type": "in",
     "named": false
   },
   {
@@ -649,7 +772,15 @@
     "named": false
   },
   {
+    "type": "positioned",
+    "named": false
+  },
+  {
     "type": "r",
+    "named": false
+  },
+  {
+    "type": "rotated",
     "named": false
   },
   {
@@ -657,7 +788,15 @@
     "named": false
   },
   {
+    "type": "store",
+    "named": false
+  },
+  {
     "type": "true",
+    "named": false
+  },
+  {
+    "type": "unless",
     "named": false
   },
   {

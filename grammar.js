@@ -15,15 +15,16 @@ module.exports = grammar({
     [$.rotation, $.location],
     [$.selector_value, $.selector_number],
     [$.item, $.path],
-    [$.path]
+    [$.path],
+    [$.execute_command, $.coordinate]
   ],
   rules: {
     root: $ => repeat(
       choice(
         $.command,
         $.comment,
-        $._line_separator
-        // alias($.execute_command, $.command)
+        $._line_separator,
+        alias($.execute_command, $.command)
       )
     ),
     comment: $ => CONSTS.COMMENT,
@@ -51,6 +52,52 @@ module.exports = grammar({
           )
         )
       )
+    ),
+    execute_command: $ => seq(
+      optional("/"),
+      seq(
+        alias("execute", $.command_name),
+        repeat(
+          seq(
+            " ",
+            choice(
+              $._identifier,
+              $.number,
+              $.location,
+              $.rotation,
+              $.boolean,
+              $.string,
+              $.selector,
+              $.path,
+              $.container,
+              $.item,
+              $.nbt_path,
+              $.nbt,
+              $.invalid_comment
+            )
+          )
+        ),
+        " ",
+        alias("run", $.execute_keyword),
+        " ",
+        choice(
+          $.execute_command,
+          $.command
+        )
+      )
+    ),
+    execute_keyword: $ => choice(
+      "in",
+      "if",
+      "unless",
+      "facing",
+      "anchored",
+      "align",
+      "at",
+      "as",
+      "positioned",
+      "rotated",
+      "store"
     ),
     _line_separator: $ => "\n",
     command_name: $ => CONSTS.IDENTIFIER,
@@ -115,7 +162,8 @@ module.exports = grammar({
     selector_value: $ => choice(
       CONSTS.IDENTIFIER,
       $.boolean,
-      $.number
+      $.number,
+      $.selector_number
     ),
     selector_nbt: $ => seq(
       alias("nbt", $.selector_key),

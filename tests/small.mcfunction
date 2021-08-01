@@ -1,1 +1,2 @@
-test @p[nbt={yeet:1},scores={foo=1..}]
+execute run say hi
+execute in test run execute if block test run goodbye
