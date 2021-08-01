@@ -2,7 +2,8 @@ const CONSTS = {
   COMMENT: /#.*/,
   WORD: /[A-Za-z][\w-]+/,
   IDENTIFIER: /[a-z_-]+/,
-  WHITESPACE: / */
+  WHITESPACE: / */,
+  NAMESPACE: /[a-z_-]+:/
 };
 
 module.exports = grammar({
@@ -11,7 +12,9 @@ module.exports = grammar({
   conflicts: $ => [
     [$.coordinate, $.command],
     [$.rotation, $.location],
-    [$.selector_value, $.selector_number]
+    [$.selector_value, $.selector_number],
+    [$.item, $.path],
+    [$.path]
   ],
   rules: {
     root: $ => repeat(
@@ -37,7 +40,10 @@ module.exports = grammar({
             $.rotation,
             $.boolean,
             $.string,
-            $.selector
+            $.selector,
+            $.path,
+            $.container,
+            $.item
           )
         )
       )
@@ -109,6 +115,33 @@ module.exports = grammar({
       /-?\d+(\.\d+)?\.\.-?\d+(\.\d+)?/,
       /-?\d+(\.\d+)?\.\./,
       $.number
-    )
+    ),
+    item: $ => seq(
+      optional(CONSTS.NAMESPACE),
+      CONSTS.IDENTIFIER
+    ),
+    path: $ => seq(
+      optional(CONSTS.NAMESPACE),
+      CONSTS.IDENTIFIER,
+      repeat1(
+        seq(
+          "/",
+          CONSTS.IDENTIFIER
+        )
+      )
+    ),
+    container: $ => seq(
+      optional(CONSTS.NAMESPACE),
+      CONSTS.IDENTIFIER,
+      repeat1(
+        seq(
+          ".",
+          choice(
+            CONSTS.IDENTIFIER,
+            $.number
+          )
+        )
+      )
+    ),
   }
 });
