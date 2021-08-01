@@ -194,6 +194,6 @@ module.exports = grammar({
         )
       )
     ),
-    nbt_path: $ => /([A-Za-z]\w+)((\[\d+\])*(\.|\/)([A-Za-z]\w+))+/
+    nbt_path: $ => /([A-Za-z]\w*)((\[\d+\])*(\.|\/)([A-Za-z]\w*))+/
   }
 });
