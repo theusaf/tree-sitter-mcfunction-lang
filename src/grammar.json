@@ -303,8 +303,16 @@
                 "type": "SEQ",
                 "members": [
                   {
+                    "type": "PATTERN",
+                    "value": " *"
+                  },
+                  {
                     "type": "SYMBOL",
                     "name": "selector_option"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": " *"
                   },
                   {
                     "type": "CHOICE",
@@ -340,8 +348,16 @@
           "name": "selector_key"
         },
         {
+          "type": "PATTERN",
+          "value": " *"
+        },
+        {
           "type": "STRING",
           "value": "="
+        },
+        {
+          "type": "PATTERN",
+          "value": " *"
         },
         {
           "type": "SYMBOL",

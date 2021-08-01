@@ -1,7 +1,8 @@
 const CONSTS = {
   COMMENT: /#.*/,
   WORD: /[A-Za-z][\w-]+/,
-  IDENTIFIER: /[a-z_-]+/
+  IDENTIFIER: /[a-z_-]+/,
+  WHITESPACE: / */
 };
 
 module.exports = grammar({
@@ -80,7 +81,9 @@ module.exports = grammar({
       optional(
         repeat(
           seq(
+            CONSTS.WHITESPACE,
             $.selector_option,
+            CONSTS.WHITESPACE,
             optional(",")
           )
         )
@@ -89,7 +92,9 @@ module.exports = grammar({
     ),
     selector_option: $ => seq(
       $.selector_key,
+      CONSTS.WHITESPACE,
       "=",
+      CONSTS.WHITESPACE,
       $.selector_value
     ),
     selector_key: $ => CONSTS.IDENTIFIER,
