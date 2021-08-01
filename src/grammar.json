@@ -103,6 +103,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "nbt_path"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "nbt"
                   }
                 ]
               }
@@ -121,7 +125,7 @@
     },
     "_identifier": {
       "type": "PATTERN",
-      "value": "[A-Za-z][\\w-]+"
+      "value": "[A-Za-z][\\w-]*"
     },
     "number": {
       "type": "PATTERN",
@@ -424,6 +428,221 @@
         {
           "type": "SYMBOL",
           "name": "number"
+        }
+      ]
+    },
+    "nbt": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "nbt_array"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "nbt_object"
+        }
+      ]
+    },
+    "nbt_object": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "PATTERN",
+          "value": " *"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": " *"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "nbt_object_key"
+              },
+              {
+                "type": "PATTERN",
+                "value": " *"
+              },
+              {
+                "type": "STRING",
+                "value": ":"
+              },
+              {
+                "type": "PATTERN",
+                "value": " *"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "nbt_object_value"
+              },
+              {
+                "type": "PATTERN",
+                "value": " *"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": " *"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "nbt_array": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "PATTERN",
+          "value": " *"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": " *"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "nbt_object_value"
+              },
+              {
+                "type": "PATTERN",
+                "value": " *"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": " *"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "nbt_object_key": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z]\\w*"
+        }
+      ]
+    },
+    "nbt_object_value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "nbt_number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "boolean"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "nbt"
+        }
+      ]
+    },
+    "nbt_number": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "l"
+                },
+                {
+                  "type": "STRING",
+                  "value": "s"
+                },
+                {
+                  "type": "STRING",
+                  "value": "d"
+                },
+                {
+                  "type": "STRING",
+                  "value": "f"
+                },
+                {
+                  "type": "STRING",
+                  "value": "b"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },

@@ -1,1 +1,1 @@
-test regular/path container.0 item:item Some.NBT/Path[9][0].foo
+test {nbt:true,"foo":{bar:[1,4,5,6],a:[12,34]}}

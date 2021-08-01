@@ -33,6 +33,10 @@
           "named": true
         },
         {
+          "type": "nbt",
+          "named": true
+        },
+        {
           "type": "nbt_path",
           "named": true
         },
@@ -138,6 +142,120 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "nbt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "nbt_array",
+          "named": true
+        },
+        {
+          "type": "nbt_object",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nbt_array",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "nbt_object_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nbt_number",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nbt_object",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "nbt_object_key",
+          "named": true
+        },
+        {
+          "type": "nbt_object_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nbt_object_key",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nbt_object_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "nbt",
+          "named": true
+        },
+        {
+          "type": "nbt_number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -308,6 +426,10 @@
     "named": false
   },
   {
+    "type": ":",
+    "named": false
+  },
+  {
     "type": "=",
     "named": false
   },
@@ -332,11 +454,27 @@
     "named": false
   },
   {
+    "type": "b",
+    "named": false
+  },
+  {
+    "type": "d",
+    "named": false
+  },
+  {
     "type": "e",
     "named": false
   },
   {
+    "type": "f",
+    "named": false
+  },
+  {
     "type": "false",
+    "named": false
+  },
+  {
+    "type": "l",
     "named": false
   },
   {
@@ -361,6 +499,14 @@
   },
   {
     "type": "true",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
     "named": false
   },
   {

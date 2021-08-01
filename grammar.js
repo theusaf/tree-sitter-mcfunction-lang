@@ -1,7 +1,7 @@
 const CONSTS = {
   COMMENT: /#.*/,
-  WORD: /[A-Za-z][\w-]+/,
-  NBT_IDENTIFIER: /[A-Za-z]\w+/,
+  WORD: /[A-Za-z][\w-]*/,
+  NBT_IDENTIFIER: /[A-Za-z]\w*/,
   IDENTIFIER: /[a-z_-]+/,
   WHITESPACE: / */,
   NAMESPACE: /[a-z_-]+:/
@@ -45,7 +45,8 @@ module.exports = grammar({
             $.path,
             $.container,
             $.item,
-            $.nbt_path
+            $.nbt_path,
+            $.nbt
           )
         )
       )
@@ -117,6 +118,54 @@ module.exports = grammar({
       /-?\d+(\.\d+)?\.\.-?\d+(\.\d+)?/,
       /-?\d+(\.\d+)?\.\./,
       $.number
+    ),
+    nbt: $ => choice($.nbt_array, $.nbt_object),
+    nbt_object: $ => seq(
+      "{",
+      CONSTS.WHITESPACE,
+      repeat(
+        seq(
+          CONSTS.WHITESPACE,
+          $.nbt_object_key,
+          CONSTS.WHITESPACE,
+          ":",
+          CONSTS.WHITESPACE,
+          $.nbt_object_value,
+          CONSTS.WHITESPACE,
+          optional(",")
+        )
+      ),
+      CONSTS.WHITESPACE,
+      "}"
+    ),
+    nbt_array: $ => seq(
+      "[",
+      CONSTS.WHITESPACE,
+      repeat(
+        seq(
+          CONSTS.WHITESPACE,
+          $.nbt_object_value,
+          CONSTS.WHITESPACE,
+          optional(",")
+        )
+      ),
+      CONSTS.WHITESPACE,
+      "]"
+    ),
+    nbt_object_key: $ => choice(
+      $.string,
+      $.number,
+      CONSTS.NBT_IDENTIFIER
+    ),
+    nbt_object_value: $ => choice(
+      $.string,
+      $.nbt_number,
+      $.boolean,
+      $.nbt
+    ),
+    nbt_number: $ => seq(
+      $.number,
+      optional(choice("l","s","d","f","b"))
     ),
     item: $ => seq(
       optional(CONSTS.NAMESPACE),
