@@ -125,7 +125,7 @@
     },
     "coordinate": {
       "type": "PREC",
-      "value": 1,
+      "value": 2,
       "content": {
         "type": "CHOICE",
         "members": [

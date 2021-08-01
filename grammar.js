@@ -117,6 +117,7 @@ module.exports = grammar({
       $.number
     )),
     // FIXME: This is a hack, but it allows for incorrect syntaxes.
+    // Related StackOverFlow question: https://stackoverflow.com/questions/68606558/tree-sitter-match-for-similar-structures
     selector_object: $ => seq(
       "{",
       repeat(
