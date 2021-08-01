@@ -457,11 +457,37 @@
                 "members": [
                   {
                     "type": "SYMBOL",
-                    "name": "selector_score"
+                    "name": "selector_key"
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "selector_nbt"
+                    "name": "nbt_object_key"
+                  }
+                ]
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ":"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "="
+                  }
+                ]
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "selector_number"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "nbt_object_value"
                   }
                 ]
               },

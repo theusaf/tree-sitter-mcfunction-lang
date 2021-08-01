@@ -114,14 +114,24 @@ module.exports = grammar({
       ),
       $.number
     )),
+    // FIXME: This is a hack, but it allows for incorrect syntaxes.
     selector_object: $ => seq(
       "{",
       repeat(
         seq(
           choice(
+            $.selector_key,
+            $.nbt_object_key
+          ),
+          choice(":", "="),
+          choice(
+            $.selector_number,
+            $.nbt_object_value
+          ),
+          /*choice(
             $.selector_score,
             $.selector_nbt
-          ),
+          ),*/
           optional(",")
         )
       ),

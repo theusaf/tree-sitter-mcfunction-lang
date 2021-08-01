@@ -358,25 +358,6 @@
     }
   },
   {
-    "type": "selector_nbt",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "nbt_object_key",
-          "named": true
-        },
-        {
-          "type": "nbt_object_value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "selector_number",
     "named": true,
     "fields": {},
@@ -400,11 +381,19 @@
       "required": false,
       "types": [
         {
-          "type": "selector_nbt",
+          "type": "nbt_object_key",
           "named": true
         },
         {
-          "type": "selector_score",
+          "type": "nbt_object_value",
+          "named": true
+        },
+        {
+          "type": "selector_key",
+          "named": true
+        },
+        {
+          "type": "selector_number",
           "named": true
         }
       ]
@@ -427,32 +416,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "selector_score",
-    "named": true,
-    "fields": {
-      "selector_score_key": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "selector_key",
-            "named": true
-          }
-        ]
-      },
-      "selector_score_value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "selector_number",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
