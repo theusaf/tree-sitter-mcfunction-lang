@@ -4,10 +4,12 @@ module.exports = grammar({
     root: $ => repeat(
       choice(
         $.command,
-        $.comment
+        $.comment,
+        alias($.execute_command, $.command)
       )
     ),
     comment: $ => /#.*/,
+    invalid_comment: $ => /#.*/,
     command: $ => prec.right(seq(
       optional("/"),
       $.command_name,
@@ -30,7 +32,45 @@ module.exports = grammar({
       ),
       "\n"
     )),
-    invalid_comment: $ => $.comment,
+    execute_command: $ => seq(
+      seq(
+        alias("execute", $.command_name),
+        repeat(
+          choice(
+            $.execute_keyword,
+            $.identifier,
+            $.location,
+            $.rotation,
+            $.item,
+            $.path,
+            $.container,
+            $.selector,
+            $.invalid_comment,
+            $.number,
+            $.coordinate,
+            $.string
+          )
+        ),
+        alias("run", $.execute_keyword),
+        choice(
+          $.execute_command,
+          $.command
+        )
+      )
+    ),
+    execute_keyword: $ => choice(
+      "in",
+      "if",
+      "unless",
+      "facing",
+      "anchored",
+      "align",
+      "at",
+      "as",
+      "positioned",
+      "rotated",
+      "store"
+    ),
     command_name: $ => /[A-Za-z][\w-]+/,
     identifier: $ => /[A-Za-z][\w-]+/,
     number: $ => prec(1, /-?\d+(\.\d+)?/),

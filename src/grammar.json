@@ -13,11 +13,24 @@
           {
             "type": "SYMBOL",
             "name": "comment"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "execute_command"
+            },
+            "named": true,
+            "value": "command"
           }
         ]
       }
     },
     "comment": {
+      "type": "PATTERN",
+      "value": "#.*"
+    },
+    "invalid_comment": {
       "type": "PATTERN",
       "value": "#.*"
     },
@@ -110,9 +123,151 @@
         ]
       }
     },
-    "invalid_comment": {
-      "type": "SYMBOL",
-      "name": "comment"
+    "execute_command": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "STRING",
+                "value": "execute"
+              },
+              "named": true,
+              "value": "command_name"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "execute_keyword"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "location"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "rotation"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "item"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "path"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "container"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "selector"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "invalid_comment"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "number"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "coordinate"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "string"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "STRING",
+                "value": "run"
+              },
+              "named": true,
+              "value": "execute_keyword"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "execute_command"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "command"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "execute_keyword": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "in"
+        },
+        {
+          "type": "STRING",
+          "value": "if"
+        },
+        {
+          "type": "STRING",
+          "value": "unless"
+        },
+        {
+          "type": "STRING",
+          "value": "facing"
+        },
+        {
+          "type": "STRING",
+          "value": "anchored"
+        },
+        {
+          "type": "STRING",
+          "value": "align"
+        },
+        {
+          "type": "STRING",
+          "value": "at"
+        },
+        {
+          "type": "STRING",
+          "value": "as"
+        },
+        {
+          "type": "STRING",
+          "value": "positioned"
+        },
+        {
+          "type": "STRING",
+          "value": "rotated"
+        },
+        {
+          "type": "STRING",
+          "value": "store"
+        }
+      ]
     },
     "command_name": {
       "type": "PATTERN",
