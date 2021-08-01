@@ -78,6 +78,10 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "container"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "nbt"
                 }
               ]
@@ -594,6 +598,34 @@
             "content": {
               "type": "STRING",
               "value": "/"
+            }
+          }
+        }
+      ]
+    },
+    "container": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "item"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[a-z_]+"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "."
             }
           }
         }

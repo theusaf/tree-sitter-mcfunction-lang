@@ -21,6 +21,7 @@ module.exports = grammar({
           $.selector,
           $.item,
           $.path,
+          $.container,
           $.nbt
         )
       ),
@@ -156,6 +157,12 @@ module.exports = grammar({
       choice($.item, /[a-z_]+/),
       repeat1(
         token("/", /[a-z_]/)
+      )
+    ),
+    container: $ => seq(
+      choice($.item, /[a-z_]+/),
+      repeat1(
+        token(".", /[a-z_]/)
       )
     ),
     nbt: $ => choice(
