@@ -1,5 +1,2 @@
-test @e[scores={yeet:true}] [{example:1}]
-/bad
-# good comment
-
-execute run hi there " # string w comment "
+setblock ~ ~ ~ diamond_block[state=1,foo=north]
+give @p diamond{nbtData:true}

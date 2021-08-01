@@ -24,6 +24,7 @@ module.exports = grammar({
           $.string,
           $.selector,
           $.item,
+          alias($._item_with_extra, $.item),
           $.path,
           $.container,
           $.nbt,
@@ -72,7 +73,7 @@ module.exports = grammar({
       "store"
     ),
     command_name: $ => /[A-Za-z][\w-]+/,
-    identifier: $ => /[A-Za-z][\w-]+/,
+    identifier: $ => /[A-Za-z][\w-]+ /,
     number: $ => prec(1, /-?\d+(\.\d+)?/),
     boolean: $ => choice(
       "true",
@@ -212,6 +213,42 @@ module.exports = grammar({
       $._namespace,
       /[a-z_-]+/
     ),
+    _item_with_extra: $ => prec.right(5, seq(
+      optional($._namespace),
+      /[a-z_-]+/,
+      choice(
+        $.item_state,
+        $.item_nbt
+      )
+    )),
+    item_nbt: $ => seq(
+      token.immediate("{"),
+      repeat(
+        seq(
+          $.nbt_object_key,
+          ":",
+          $.nbt_object_value,
+          optional(",")
+        )
+      ),
+      "}"
+    ),
+    item_state: $ => seq(
+      token.immediate("["),
+      repeat(
+        seq(
+          $.selector_key,
+          "=",
+          alias(choice(
+            $.number,
+            $.selector_key,
+            $.boolean
+          ), $.selector_value),
+          optional(",")
+        )
+      ),
+      "]"
+    ),
     path: $ => seq(
       choice($.item, /[a-z_]+/),
       repeat1(
@@ -261,7 +298,7 @@ module.exports = grammar({
     nbt_object_key: $ => choice(
       $.string,
       $.number,
-      $.identifier
+      alias(/[A-Za-z][\w-]+/, $.identifier)
     ),
     nbt_object_value: $ => choice(
       $.string,
