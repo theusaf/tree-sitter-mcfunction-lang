@@ -100,20 +100,73 @@ module.exports = grammar({
       ),
       "]"
     ),
-    selector_option: $ => seq(
-      $.selector_key,
-      CONSTS.WHITESPACE,
-      "=",
-      CONSTS.WHITESPACE,
-      $.selector_value
+    selector_option: $ => choice(
+      $.selector_score,
+      $.selector_nbt,
+      seq(
+        $.selector_key,
+        CONSTS.WHITESPACE,
+        "=",
+        CONSTS.WHITESPACE,
+        $.selector_value
+      )
     ),
     selector_key: $ => CONSTS.IDENTIFIER,
     selector_value: $ => choice(
       CONSTS.IDENTIFIER,
       $.boolean,
-      $.number,
-      $.selector_number
+      $.number
     ),
+    selector_nbt: $ => seq(
+      alias("nbt", $.selector_key),
+      CONSTS.WHITESPACE,
+      "=",
+      CONSTS.WHITESPACE,
+      alias($._selector_nbt, $.selector_value)
+    ),
+    _selector_nbt: $ => seq(
+      "{",
+      repeat(
+        seq(
+          CONSTS.WHITESPACE,
+          $.nbt_object_key,
+          CONSTS.WHITESPACE,
+          ":",
+          CONSTS.WHITESPACE,
+          $.nbt_object_value,
+          CONSTS.WHITESPACE,
+          optional(",")
+        )
+      ),
+      "}"
+    ),
+    selector_score: $ => seq(
+      alias("scores", $.selector_key),
+      CONSTS.WHITESPACE,
+      "=",
+      CONSTS.WHITESPACE,
+      alias($._selector_score_object, $.selector_value)
+    ),
+    _selector_score_object: $ => seq(
+      "{",
+      CONSTS.WHITESPACE,
+      repeat(
+        seq(
+          CONSTS.WHITESPACE,
+          $.selector_score_key,
+          CONSTS.WHITESPACE,
+          "=",
+          CONSTS.WHITESPACE,
+          $.selector_score_value,
+          CONSTS.WHITESPACE,
+          optional(",")
+        )
+      ),
+      CONSTS.WHITESPACE,
+      "}"
+    ),
+    selector_score_key: $ => CONSTS.IDENTIFIER,
+    selector_score_value: $ => $.selector_number,
     selector_number: $ => choice(
       /\.\.-?\d+(\.\d+)?/,
       /-?\d+(\.\d+)?\.\.-?\d+(\.\d+)?/,
