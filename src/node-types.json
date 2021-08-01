@@ -170,6 +170,40 @@
     "fields": {}
   },
   {
+    "type": "selector_number",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "selector_option",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "selector_key",
+          "named": true
+        },
+        {
+          "type": "selector_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "selector_option_section",
     "named": true,
     "fields": {},
@@ -178,11 +212,7 @@
       "required": false,
       "types": [
         {
-          "type": "selector_key",
-          "named": true
-        },
-        {
-          "type": "selector_value",
+          "type": "selector_option",
           "named": true
         }
       ]
@@ -202,6 +232,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "selector_number",
           "named": true
         }
       ]

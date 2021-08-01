@@ -304,7 +304,7 @@
                 "members": [
                   {
                     "type": "SYMBOL",
-                    "name": "_selector_option"
+                    "name": "selector_option"
                   },
                   {
                     "type": "CHOICE",
@@ -332,7 +332,7 @@
         }
       ]
     },
-    "_selector_option": {
+    "selector_option": {
       "type": "SEQ",
       "members": [
         {
@@ -367,6 +367,31 @@
         {
           "type": "SYMBOL",
           "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "selector_number"
+        }
+      ]
+    },
+    "selector_number": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\.\\.-?\\d+(\\.\\d+)?"
+        },
+        {
+          "type": "PATTERN",
+          "value": "-?\\d+(\\.\\d+)?\\.\\.-?\\d+(\\.\\d+)?"
+        },
+        {
+          "type": "PATTERN",
+          "value": "-?\\d+(\\.\\d+)?\\.\\."
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
         }
       ]
     }
@@ -380,6 +405,10 @@
     [
       "rotation",
       "location"
+    ],
+    [
+      "selector_value",
+      "selector_number"
     ]
   ],
   "externals": [],

@@ -9,7 +9,8 @@ module.exports = grammar({
   extras: $ => [],
   conflicts: $ => [
     [$.coordinate, $.command],
-    [$.rotation, $.location]
+    [$.rotation, $.location],
+    [$.selector_value, $.selector_number]
   ],
   rules: {
     root: $ => repeat(
@@ -95,6 +96,13 @@ module.exports = grammar({
     selector_value: $ => choice(
       CONSTS.IDENTIFIER,
       $.boolean,
+      $.number,
+      $.selector_number
+    ),
+    selector_number: $ => choice(
+      /\.\.-?\d+(\.\d+)?/,
+      /-?\d+(\.\d+)?\.\.-?\d+(\.\d+)?/,
+      /-?\d+(\.\d+)?\.\./,
       $.number
     )
   }
