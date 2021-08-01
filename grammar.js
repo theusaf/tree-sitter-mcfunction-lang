@@ -10,7 +10,7 @@ module.exports = grammar({
     comment: $ => /#.*/,
     command: $ => prec.right(seq(
       optional($.invalid_slash),
-      field("command_name", $.identifier),
+      $.command_name,
       repeat(
         choice(
           $.identifier,
@@ -25,11 +25,13 @@ module.exports = grammar({
           $.path,
           $.container,
           $.nbt,
-          field("invalid", $.comment)
+          $.invalid_comment
         )
       ),
       "\n"
     )),
+    invalid_comment: $ => $.comment,
+    command_name: $ => /[A-Za-z][\w-]+/,
     invalid_slash: $ => "/",
     identifier: $ => /[A-Za-z][\w-]+/,
     number: $ => prec(1, /-?\d+(\.\d+)?/),
@@ -160,10 +162,12 @@ module.exports = grammar({
       $.nbt_object_value
     ),
     selector_score: $ => seq(
-      field("selector_score_key", $.selector_key),
+      $.selector_score_key,
       "=",
-      field("selector_score_value", $.selector_number)
+      $.selector_score_value
     ),
+    selector_score_key: $ => $.selector_key,
+    selector_score_value: $ => $.selector_number,
     _namespace: $ => /[a-z_-]+:/,
     item: $ => seq(
       $._namespace,

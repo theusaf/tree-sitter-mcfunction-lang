@@ -40,12 +40,8 @@
             ]
           },
           {
-            "type": "FIELD",
-            "name": "command_name",
-            "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
-            }
+            "type": "SYMBOL",
+            "name": "command_name"
           },
           {
             "type": "REPEAT",
@@ -101,12 +97,8 @@
                   "name": "nbt"
                 },
                 {
-                  "type": "FIELD",
-                  "name": "invalid",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "comment"
-                  }
+                  "type": "SYMBOL",
+                  "name": "invalid_comment"
                 }
               ]
             }
@@ -117,6 +109,14 @@
           }
         ]
       }
+    },
+    "invalid_comment": {
+      "type": "SYMBOL",
+      "name": "comment"
+    },
+    "command_name": {
+      "type": "PATTERN",
+      "value": "[A-Za-z][\\w-]+"
     },
     "invalid_slash": {
       "type": "STRING",
@@ -630,26 +630,26 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "selector_score_key",
-          "content": {
-            "type": "SYMBOL",
-            "name": "selector_key"
-          }
+          "type": "SYMBOL",
+          "name": "selector_score_key"
         },
         {
           "type": "STRING",
           "value": "="
         },
         {
-          "type": "FIELD",
-          "name": "selector_score_value",
-          "content": {
-            "type": "SYMBOL",
-            "name": "selector_number"
-          }
+          "type": "SYMBOL",
+          "name": "selector_score_value"
         }
       ]
+    },
+    "selector_score_key": {
+      "type": "SYMBOL",
+      "name": "selector_key"
+    },
+    "selector_score_value": {
+      "type": "SYMBOL",
+      "name": "selector_number"
     },
     "_namespace": {
       "type": "PATTERN",
