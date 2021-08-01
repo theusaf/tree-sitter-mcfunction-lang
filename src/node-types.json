@@ -121,7 +121,26 @@
       "required": false,
       "types": [
         {
+          "type": "item_nbt",
+          "named": true
+        },
+        {
           "type": "item_state",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "item_nbt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "nbt_object",
           "named": true
         }
       ]

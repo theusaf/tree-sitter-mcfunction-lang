@@ -173,10 +173,12 @@ module.exports = grammar({
       CONSTS.IDENTIFIER,
       optional(
         choice(
-          $.item_state
+          $.item_state,
+          $.item_nbt
         )
       )
     ),
+    item_nbt: $ => $.nbt_object,
     item_state: $ => seq(
       "[",
       CONSTS.WHITESPACE,

@@ -678,6 +678,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "item_state"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "item_nbt"
                 }
               ]
             },
@@ -687,6 +691,10 @@
           ]
         }
       ]
+    },
+    "item_nbt": {
+      "type": "SYMBOL",
+      "name": "nbt_object"
     },
     "item_state": {
       "type": "SEQ",
