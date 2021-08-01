@@ -9,7 +9,7 @@ module.exports = grammar({
     ),
     comment: $ => /#.*/,
     command: $ => prec.right(seq(
-      optional($.invalid_slash),
+      optional("/"),
       $.command_name,
       repeat(
         choice(
@@ -32,7 +32,6 @@ module.exports = grammar({
     )),
     invalid_comment: $ => $.comment,
     command_name: $ => /[A-Za-z][\w-]+/,
-    invalid_slash: $ => "/",
     identifier: $ => /[A-Za-z][\w-]+/,
     number: $ => prec(1, /-?\d+(\.\d+)?/),
     boolean: $ => choice(

@@ -37,10 +37,6 @@
           "named": true
         },
         {
-          "type": "invalid_slash",
-          "named": true
-        },
-        {
           "type": "item",
           "named": true
         },
@@ -602,6 +598,10 @@
     "named": false
   },
   {
+    "type": "/",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -640,10 +640,6 @@
   {
     "type": "false",
     "named": false
-  },
-  {
-    "type": "invalid_slash",
-    "named": true
   },
   {
     "type": "l",

@@ -31,8 +31,8 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "invalid_slash"
+                "type": "STRING",
+                "value": "/"
               },
               {
                 "type": "BLANK"
@@ -117,10 +117,6 @@
     "command_name": {
       "type": "PATTERN",
       "value": "[A-Za-z][\\w-]+"
-    },
-    "invalid_slash": {
-      "type": "STRING",
-      "value": "/"
     },
     "identifier": {
       "type": "PATTERN",
