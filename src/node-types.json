@@ -25,6 +25,10 @@
           "named": true
         },
         {
+          "type": "invalid_comment",
+          "named": true
+        },
+        {
           "type": "item",
           "named": true
         },
@@ -102,6 +106,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "invalid_comment",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "item",

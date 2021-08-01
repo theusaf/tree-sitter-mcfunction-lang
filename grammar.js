@@ -46,7 +46,8 @@ module.exports = grammar({
             $.container,
             $.item,
             $.nbt_path,
-            $.nbt
+            $.nbt,
+            $.invalid_comment
           )
         )
       )

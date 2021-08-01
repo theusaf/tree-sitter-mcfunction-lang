@@ -107,6 +107,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "nbt"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "invalid_comment"
                   }
                 ]
               }
@@ -752,7 +756,7 @@
     },
     "nbt_path": {
       "type": "PATTERN",
-      "value": "([A-Za-z]\\w+)((\\[\\d+\\])*(\\.|\\/)([A-Za-z]\\w+))+"
+      "value": "([A-Za-z]\\w*)((\\[\\d+\\])*(\\.|\\/)([A-Za-z]\\w*))+"
     }
   },
   "extras": [],
