@@ -17,6 +17,16 @@
             "named": true
           }
         ]
+      },
+      "invalid": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
@@ -37,6 +47,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "invalid_slash",
           "named": true
         },
         {
@@ -107,17 +121,7 @@
   {
     "type": "item",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "selector_key",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "location",
@@ -370,15 +374,20 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "selector_option",
+          "type": "selector_option_section",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "selector_key",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "selector_nbt",
@@ -461,6 +470,21 @@
     }
   },
   {
+    "type": "selector_option_section",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "selector_option",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "selector_score",
     "named": true,
     "fields": {
@@ -492,7 +516,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "boolean",
@@ -508,10 +532,6 @@
         },
         {
           "type": "path",
-          "named": true
-        },
-        {
-          "type": "selector_key",
           "named": true
         },
         {
@@ -591,16 +611,16 @@
     "named": true
   },
   {
+    "type": "invalid_slash",
+    "named": true
+  },
+  {
     "type": "l",
     "named": false
   },
   {
     "type": "s",
     "named": false
-  },
-  {
-    "type": "selector_key",
-    "named": true
   },
   {
     "type": "true",

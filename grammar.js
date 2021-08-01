@@ -9,6 +9,7 @@ module.exports = grammar({
     ),
     comment: $ => /#.*/,
     command: $ => prec.right(seq(
+      optional($.invalid_slash),
       field("command_name", $.identifier),
       repeat(
         choice(
@@ -23,11 +24,13 @@ module.exports = grammar({
           $.item,
           $.path,
           $.container,
-          $.nbt
+          $.nbt,
+          field("invalid", $.comment)
         )
       ),
       "\n"
     )),
+    invalid_slash: $ => "/",
     identifier: $ => /[A-Za-z][\w-]+/,
     number: $ => prec(1, /-?\d+(\.\d+)?/),
     boolean: $ => choice(
@@ -70,20 +73,19 @@ module.exports = grammar({
           )
         )
       ),
+      optional($.selector_option_section)
+    ),
+    selector_option_section: $ => seq(
+      token.immediate("["),
       optional(
-        seq(
-          token.immediate("["),
-          optional(
-            repeat(
-              seq(
-                $.selector_option,
-                optional(",")
-              )
-            )
-          ),
-          "]"
+        repeat(
+          seq(
+            $.selector_option,
+            optional(",")
+          )
         )
       ),
+      "]"
     ),
     selector_option: $ => seq(
       $.selector_key,
@@ -94,7 +96,7 @@ module.exports = grammar({
     selector_value: $ => choice(
       $.item,
       $.path,
-      $.selector_key,
+      /[a-z_-]+/,
       $.selector_number,
       $.number,
       $.boolean,
@@ -165,7 +167,7 @@ module.exports = grammar({
     _namespace: $ => /[a-z_-]+:/,
     item: $ => seq(
       $._namespace,
-      $.selector_key
+      /[a-z_-]+/
     ),
     path: $ => seq(
       choice($.item, /[a-z_]+/),

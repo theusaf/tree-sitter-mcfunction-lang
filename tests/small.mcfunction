@@ -1,1 +1,2 @@
-test @e[scores={example=1..}]
+test @e[scores={yeet:true}] [{example:1}]
+/bad
