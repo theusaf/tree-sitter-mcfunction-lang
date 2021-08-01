@@ -218,6 +218,10 @@
                       {
                         "type": "SYMBOL",
                         "name": "invalid_comment"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "execute_keyword"
                       }
                     ]
                   }

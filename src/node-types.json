@@ -195,6 +195,11 @@
     }
   },
   {
+    "type": "execute_keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "invalid_comment",
     "named": true,
     "fields": {}
@@ -730,10 +735,6 @@
   {
     "type": "e",
     "named": false
-  },
-  {
-    "type": "execute_keyword",
-    "named": true
   },
   {
     "type": "f",
