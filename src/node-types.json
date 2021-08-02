@@ -483,14 +483,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "selector_key",
+          "type": "nbt_object_key",
           "named": true
         },
         {
-          "type": "selector_value",
+          "type": "nbt_object_value",
           "named": true
         }
       ]
@@ -524,14 +524,6 @@
           "named": true
         },
         {
-          "type": "selector_nbt",
-          "named": true
-        },
-        {
-          "type": "selector_score",
-          "named": true
-        },
-        {
           "type": "selector_value",
           "named": true
         }
@@ -559,14 +551,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "selector_key",
+          "type": "selector_score_key",
           "named": true
         },
         {
-          "type": "selector_value",
+          "type": "selector_score_value",
           "named": true
         }
       ]
@@ -597,7 +589,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
@@ -605,15 +597,11 @@
           "named": true
         },
         {
-          "type": "nbt_object_key",
-          "named": true
-        },
-        {
-          "type": "nbt_object_value",
-          "named": true
-        },
-        {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "selector_nbt",
           "named": true
         },
         {
@@ -621,11 +609,7 @@
           "named": true
         },
         {
-          "type": "selector_score_key",
-          "named": true
-        },
-        {
-          "type": "selector_score_value",
+          "type": "selector_score",
           "named": true
         }
       ]

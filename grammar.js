@@ -16,7 +16,8 @@ module.exports = grammar({
     [$.selector_value, $.selector_number],
     [$.item, $.path],
     [$.path],
-    [$.execute_command, $.coordinate]
+    [$.execute_command, $.coordinate],
+    [$.selector_nbt, $.selector_score]
   ],
   rules: {
     root: $ => repeat(
@@ -148,37 +149,31 @@ module.exports = grammar({
       ),
       "]"
     ),
-    selector_option: $ => choice(
-      $.selector_score,
-      $.selector_nbt,
-      seq(
+    selector_option: $ => seq(
         $.selector_key,
         CONSTS.WHITESPACE,
         "=",
         CONSTS.WHITESPACE,
         $.selector_value
-      )
     ),
     selector_key: $ => CONSTS.IDENTIFIER,
     selector_value: $ => choice(
       CONSTS.IDENTIFIER,
       $.boolean,
       $.number,
-      $.selector_number
+      $.selector_number,
+      choice(
+        $.selector_score,
+        $.selector_nbt
+      )
     ),
     selector_nbt: $ => seq(
-      alias("nbt", $.selector_key),
-      CONSTS.WHITESPACE,
-      "=",
-      CONSTS.WHITESPACE,
-      alias($._selector_nbt, $.selector_value)
-    ),
-    _selector_nbt: $ => seq(
       "{",
+      CONSTS.WHITESPACE,
       repeat(
         seq(
           CONSTS.WHITESPACE,
-          $.nbt_object_key,
+          choice(alias($.selector_score_key, $.nbt_object_key), $.nbt_object_key),
           CONSTS.WHITESPACE,
           ":",
           CONSTS.WHITESPACE,
@@ -187,32 +182,28 @@ module.exports = grammar({
           optional(",")
         )
       ),
+      CONSTS.WHITESPACE,
       "}"
     ),
     selector_score: $ => seq(
-      alias("scores", $.selector_key),
-      CONSTS.WHITESPACE,
-      "=",
-      CONSTS.WHITESPACE,
-      alias($._selector_score_object, $.selector_value)
-    ),
-    _selector_score_object: $ => seq(
-      "{",
-      CONSTS.WHITESPACE,
-      repeat(
-        seq(
-          CONSTS.WHITESPACE,
-          $.selector_score_key,
-          CONSTS.WHITESPACE,
-          "=",
-          CONSTS.WHITESPACE,
-          $.selector_score_value,
-          CONSTS.WHITESPACE,
-          optional(",")
-        )
-      ),
-      CONSTS.WHITESPACE,
-      "}"
+      seq(
+        "{",
+        CONSTS.WHITESPACE,
+        repeat(
+          seq(
+            CONSTS.WHITESPACE,
+            $.selector_score_key,
+            CONSTS.WHITESPACE,
+            "=",
+            CONSTS.WHITESPACE,
+            $.selector_score_value,
+            CONSTS.WHITESPACE,
+            optional(",")
+          )
+        ),
+        CONSTS.WHITESPACE,
+        "}"
+      )
     ),
     selector_score_key: $ => CONSTS.IDENTIFIER,
     selector_score_value: $ => $.selector_number,
