@@ -105,7 +105,7 @@ module.exports = grammar({
     _identifier: $ => CONSTS.WORD,
     number: $ => /-?\d+(\.\d+)?/,
     boolean: $ => choice("true", "false"),
-    coordinate: $ => choice($.number, "~"),
+    coordinate: $ => choice($.number, seq("~", optional($.number)), seq("^", $.number)),
     rotation: $ => seq(
       field("x", $.coordinate),
       " ",
