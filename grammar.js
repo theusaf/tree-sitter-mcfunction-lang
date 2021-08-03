@@ -94,7 +94,7 @@ module.exports = grammar({
           $.location,
           optional(
             seq(
-              " detect ",
+              $.alias(" detect ", $.execute_keyword),
               $.location,
               " ",
               $.item,
