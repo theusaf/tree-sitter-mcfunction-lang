@@ -292,8 +292,13 @@
                     "type": "SEQ",
                     "members": [
                       {
-                        "type": "STRING",
-                        "value": " detect "
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "STRING",
+                          "value": " detect "
+                        },
+                        "named": true,
+                        "value": "execute_keyword"
                       },
                       {
                         "type": "SYMBOL",

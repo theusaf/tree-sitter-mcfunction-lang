@@ -140,7 +140,7 @@ static const char *ts_symbol_names[] = {
   [anon_sym_execute] = "command_name",
   [anon_sym_run] = "execute_keyword",
   [aux_sym__legacy_execute_token1] = "_legacy_execute_token1",
-  [anon_sym_detect] = " detect ",
+  [anon_sym_detect] = "execute_keyword",
   [anon_sym_EQ] = "=",
   [anon_sym_STAR] = "*",
   [anon_sym_in] = "in",
@@ -250,7 +250,7 @@ static TSSymbol ts_symbol_map[] = {
   [anon_sym_execute] = sym_command_name,
   [anon_sym_run] = sym_execute_keyword,
   [aux_sym__legacy_execute_token1] = aux_sym__legacy_execute_token1,
-  [anon_sym_detect] = anon_sym_detect,
+  [anon_sym_detect] = sym_execute_keyword,
   [anon_sym_EQ] = anon_sym_EQ,
   [anon_sym_STAR] = anon_sym_STAR,
   [anon_sym_in] = anon_sym_in,
@@ -383,7 +383,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
   },
   [anon_sym_detect] = {
     .visible = true,
-    .named = false,
+    .named = true,
   },
   [anon_sym_EQ] = {
     .visible = true,
