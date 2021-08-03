@@ -43,9 +43,21 @@
       "type": "PATTERN",
       "value": "#.*"
     },
-    "invalid_comment": {
-      "type": "PATTERN",
-      "value": "#.*"
+    "tag": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "#"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[a-z_-]+"
+          }
+        ]
+      }
     },
     "command": {
       "type": "SEQ",
@@ -137,7 +149,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "invalid_comment"
+          "name": "tag"
         },
         {
           "type": "SYMBOL",

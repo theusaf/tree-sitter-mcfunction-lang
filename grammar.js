@@ -34,7 +34,10 @@ module.exports = grammar({
       )
     ),
     comment: $ => CONSTS.COMMENT,
-    invalid_comment: $ => CONSTS.COMMENT,
+    tag: $ => token(seq(
+      "#",
+      CONSTS.IDENTIFIER
+    )),
     command: $ => seq(
       optional("/"),
       $.command_name,
@@ -58,7 +61,7 @@ module.exports = grammar({
       $.item,
       $.nbt_path,
       $.nbt,
-      $.invalid_comment,
+      $.tag,
       $.namespaced_container
     ),
     execute_command: $ => seq(

@@ -37,10 +37,6 @@
           "named": true
         },
         {
-          "type": "invalid_comment",
-          "named": true
-        },
-        {
           "type": "item",
           "named": true
         },
@@ -79,17 +75,16 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
         }
       ]
     }
   },
   {
     "type": "command_name",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "comment",
     "named": true,
     "fields": {}
   },
@@ -156,10 +151,6 @@
           "named": true
         },
         {
-          "type": "invalid_comment",
-          "named": true
-        },
-        {
           "type": "item",
           "named": true
         },
@@ -206,17 +197,16 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
         }
       ]
     }
   },
   {
     "type": "execute_keyword",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "invalid_comment",
     "named": true,
     "fields": {}
   },
@@ -741,6 +731,10 @@
     "named": false
   },
   {
+    "type": "comment",
+    "named": true
+  },
+  {
     "type": "d",
     "named": false
   },
@@ -807,6 +801,10 @@
   {
     "type": "store",
     "named": false
+  },
+  {
+    "type": "tag",
+    "named": true
   },
   {
     "type": "true",
