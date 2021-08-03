@@ -1,1 +1,11 @@
-test @a[scores={foo=1..},nbt={yeet:true,nested:[{me:1,yup:"ok"}]}] minecraft.custom:minecraft.foo {actual:100} item{nbt:true} block[state=100]
+execute legacy ~ ~ ~ some_command
+# test
+execute legacy 1 2 3 detect ~ ~ ~ some_block * some_command
+# test
+execute legacy ~ ~ ~ execute legacy 1 2 3 say hi
+# test
+execute run say hi
+# err
+execute run execute legacy ~ ~ ~ say hi
+# err
+execute legacy ~ ~ ~ execute run say hi

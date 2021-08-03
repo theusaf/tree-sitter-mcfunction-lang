@@ -26,6 +26,15 @@
             },
             "named": true,
             "value": "command"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_legacy_execute"
+            },
+            "named": true,
+            "value": "execute_command"
           }
         ]
       }
@@ -219,6 +228,150 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    "_legacy_execute": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "/"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "execute"
+          },
+          "named": true,
+          "value": "command_name"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": " "
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "selector"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[A-Za-z]\\w*"
+                  }
+                ]
+              },
+              {
+                "type": "STRING",
+                "value": " "
+              },
+              {
+                "type": "SYMBOL",
+                "name": "location"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": " detect "
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "location"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": " "
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "item"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": " "
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "number"
+                          },
+                          {
+                            "type": "SEQ",
+                            "members": [
+                              {
+                                "type": "SYMBOL",
+                                "name": "state_key"
+                              },
+                              {
+                                "type": "STRING",
+                                "value": "="
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "state_value"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "STRING",
+                            "value": "*"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "STRING",
+                "value": " "
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_legacy_execute"
+                    },
+                    "named": true,
+                    "value": "execute_command"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "command"
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
@@ -1298,6 +1451,16 @@
     [
       "_command_choices",
       "coordinate"
+    ],
+    [
+      "_command_choices",
+      "_legacy_execute"
+    ],
+    [
+      "_legacy_execute"
+    ],
+    [
+      "command"
     ]
   ],
   "externals": [],

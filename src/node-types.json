@@ -196,6 +196,14 @@
           "named": true
         },
         {
+          "type": "state_key",
+          "named": true
+        },
+        {
+          "type": "state_value",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         }
@@ -435,6 +443,10 @@
         {
           "type": "comment",
           "named": true
+        },
+        {
+          "type": "execute_command",
+          "named": true
         }
       ]
     }
@@ -657,7 +669,15 @@
     "named": false
   },
   {
+    "type": " detect ",
+    "named": false
+  },
+  {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "*",
     "named": false
   },
   {

@@ -19,6 +19,9 @@ module.exports = grammar({
     [$.execute_command, $.coordinate],
     [$.selector_nbt, $.selector_score],
     [$._command_choices, $.coordinate],
+    [$._command_choices, $._legacy_execute],
+    [$._legacy_execute],
+    [$.command]
   ],
   rules: {
     root: $ => repeat(
@@ -26,7 +29,8 @@ module.exports = grammar({
         $.command,
         $.comment,
         $._line_separator,
-        alias($.execute_command, $.command)
+        alias($.execute_command, $.command),
+        alias($._legacy_execute, $.execute_command)
       )
     ),
     comment: $ => CONSTS.COMMENT,
@@ -76,6 +80,41 @@ module.exports = grammar({
         choice(
           $.execute_command,
           $.command
+        )
+      )
+    ),
+    _legacy_execute: $ => seq(
+      optional("/"),
+      alias("execute", $.command_name),
+      repeat(
+        seq(
+          " ",
+          choice($.selector, CONSTS.NBT_IDENTIFIER),
+          " ",
+          $.location,
+          optional(
+            seq(
+              " detect ",
+              $.location,
+              " ",
+              $.item,
+              " ",
+              choice(
+                $.number,
+                seq(
+                  $.state_key,
+                  "=",
+                  $.state_value
+                ),
+                "*"
+              )
+            )
+          ),
+          " ",
+          choice(
+            alias($._legacy_execute, $.execute_command),
+            $.command
+          )
         )
       )
     ),
