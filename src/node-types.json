@@ -49,6 +49,10 @@
           "named": true
         },
         {
+          "type": "namespaced_container",
+          "named": true
+        },
+        {
           "type": "nbt",
           "named": true
         },
@@ -161,6 +165,10 @@
         },
         {
           "type": "location",
+          "named": true
+        },
+        {
+          "type": "namespaced_container",
           "named": true
         },
         {
@@ -747,6 +755,10 @@
   {
     "type": "l",
     "named": false
+  },
+  {
+    "type": "namespaced_container",
+    "named": true
   },
   {
     "type": "nbt_path",

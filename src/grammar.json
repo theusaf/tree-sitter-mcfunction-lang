@@ -67,64 +67,72 @@
                 "value": " "
               },
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_identifier"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "number"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "location"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "rotation"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "boolean"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "string"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "selector"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "path"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "container"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "item"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "nbt_path"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "nbt"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "invalid_comment"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "_command_choices"
               }
             ]
           }
+        }
+      ]
+    },
+    "_command_choices": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "location"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rotation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "boolean"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "selector"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "container"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "item"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "nbt_path"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "nbt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "invalid_comment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "namespaced_container"
         }
       ]
     },
@@ -169,55 +177,7 @@
                     "members": [
                       {
                         "type": "SYMBOL",
-                        "name": "_identifier"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "number"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "location"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "rotation"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "boolean"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "string"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "selector"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "path"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "container"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "item"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "nbt_path"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "nbt"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "invalid_comment"
+                        "name": "_command_choices"
                       },
                       {
                         "type": "SYMBOL",
@@ -1265,6 +1225,42 @@
         }
       ]
     },
+    "namespaced_container": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[a-z_-]+"
+          },
+          {
+            "type": "STRING",
+            "value": "."
+          },
+          {
+            "type": "PATTERN",
+            "value": "[a-z_-]+"
+          },
+          {
+            "type": "STRING",
+            "value": ":"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[a-z_-]+"
+          },
+          {
+            "type": "STRING",
+            "value": "."
+          },
+          {
+            "type": "PATTERN",
+            "value": "[a-z_-]+"
+          }
+        ]
+      }
+    },
     "nbt_path": {
       "type": "PATTERN",
       "value": "([A-Za-z]\\w*)((\\[\\d+\\])*(\\.|\\/)([A-Za-z]\\w*))+"
@@ -1298,6 +1294,10 @@
     [
       "selector_nbt",
       "selector_score"
+    ],
+    [
+      "_command_choices",
+      "coordinate"
     ]
   ],
   "externals": [],

@@ -17,7 +17,8 @@ module.exports = grammar({
     [$.item, $.path],
     [$.path],
     [$.execute_command, $.coordinate],
-    [$.selector_nbt, $.selector_score]
+    [$.selector_nbt, $.selector_score],
+    [$._command_choices, $.coordinate],
   ],
   rules: {
     root: $ => repeat(
@@ -36,23 +37,25 @@ module.exports = grammar({
       repeat(
         seq(
           " ",
-          choice(
-            $._identifier,
-            $.number,
-            $.location,
-            $.rotation,
-            $.boolean,
-            $.string,
-            $.selector,
-            $.path,
-            $.container,
-            $.item,
-            $.nbt_path,
-            $.nbt,
-            $.invalid_comment
-          )
+          $._command_choices
         )
       )
+    ),
+    _command_choices: $ => choice(
+      $._identifier,
+      $.number,
+      $.location,
+      $.rotation,
+      $.boolean,
+      $.string,
+      $.selector,
+      $.path,
+      $.container,
+      $.item,
+      $.nbt_path,
+      $.nbt,
+      $.invalid_comment,
+      $.namespaced_container
     ),
     execute_command: $ => seq(
       optional("/"),
@@ -62,19 +65,7 @@ module.exports = grammar({
           seq(
             " ",
             choice(
-              $._identifier,
-              $.number,
-              $.location,
-              $.rotation,
-              $.boolean,
-              $.string,
-              $.selector,
-              $.path,
-              $.container,
-              $.item,
-              $.nbt_path,
-              $.nbt,
-              $.invalid_comment,
+              $._command_choices,
               $.execute_keyword
             )
           )
@@ -318,6 +309,15 @@ module.exports = grammar({
         )
       )
     ),
+    namespaced_container: $ => token(seq(
+      CONSTS.IDENTIFIER,
+      ".",
+      CONSTS.IDENTIFIER,
+      ":",
+      CONSTS.IDENTIFIER,
+      ".",
+      CONSTS.IDENTIFIER
+    )),
     nbt_path: $ => /([A-Za-z]\w*)((\[\d+\])*(\.|\/)([A-Za-z]\w*))+/
   }
 });
