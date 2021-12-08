@@ -2,3 +2,4 @@ node_modules
 parser.obj
 parser.exp
 parser.lib
+build

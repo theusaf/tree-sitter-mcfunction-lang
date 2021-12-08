@@ -360,6 +360,6 @@ module.exports = grammar({
       ".",
       CONSTS.IDENTIFIER
     )),
-    nbt_path: $ => /([A-Za-z]\w*)((\[\d+\])*(\.|\/)([A-Za-z]\w*))+/
+    nbt_path: $ => /((\w+|("[^"]+"))((\[\d+\])*\.?))+/
   }
 });

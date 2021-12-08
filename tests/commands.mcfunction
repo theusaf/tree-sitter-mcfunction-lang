@@ -42,7 +42,8 @@ difficulty hard
 effect clear @a minecraft:absorbtion
 effect give @s minecraft:conduit_power 10 0 false
 execute align xy rotated as @s in overworld positioned as @s anchored eyes facing entity @s eyes if entity @s if blocks ~ ~ ~ ~ ~ ~ ~ ~ ~ masked offset ~ ~ ~ store success block ~ ~ ~ path double 1 run experience query @s points
-execute positioned ~ ~ ~ rotated ~ ~
+execute positioned ~ ~ ~ rotated ~ ~ run say hi
+data modify block ~ ~ ~ my.path[0]."to modify" insert 0 from block ~ ~ ~ my.path[0]."to get"
 experience add @s 1 points
 fill ~ ~ ~ ~ ~ ~ minecraft:gold_block replace minecraft:nether_gold_ore
 function name
