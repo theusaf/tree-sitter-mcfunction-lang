@@ -1341,6 +1341,18 @@
                 "value": "/"
               },
               {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "[a-z_-]+:"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
                 "type": "PATTERN",
                 "value": "[a-z_-]+"
               }

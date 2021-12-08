@@ -334,6 +334,7 @@ module.exports = grammar({
       repeat1(
         seq(
           "/",
+          optional(CONSTS.NAMESPACE),
           CONSTS.IDENTIFIER
         )
       )
