@@ -79,6 +79,10 @@
         {
           "type": "tag",
           "named": true
+        },
+        {
+          "type": "text",
+          "named": true
         }
       ]
     }
@@ -201,6 +205,10 @@
         {
           "type": "tag",
           "named": true
+        },
+        {
+          "type": "text",
+          "named": true
         }
       ]
     }
@@ -215,7 +223,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
@@ -804,6 +812,10 @@
   },
   {
     "type": "tag",
+    "named": true
+  },
+  {
+    "type": "text",
     "named": true
   },
   {

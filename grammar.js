@@ -22,7 +22,7 @@ module.exports = grammar({
     [$._command_choices, $._legacy_execute],
     [$._legacy_execute],
     [$.command],
-    [$.nbt_path]
+    [$._blank_item_with_namespace, $.path]
   ],
   rules: {
     root: $ => repeat(
@@ -60,10 +60,12 @@ module.exports = grammar({
       $.path,
       $.container,
       $.item,
+      alias($._blank_item_with_namespace, $.item),
       $.nbt_path,
       $.nbt,
       $.tag,
-      $.namespaced_container
+      $.namespaced_container,
+      $.text
     ),
     execute_command: $ => seq(
       optional("/"),
@@ -136,6 +138,7 @@ module.exports = grammar({
       "store"
     ),
     _line_separator: $ => "\n",
+    text: $ => /[A-Za-z_]+/,
     command_name: $ => CONSTS.IDENTIFIER,
     _identifier: $ => CONSTS.WORD,
     number: $ => /-?\d+(\.\d+)?/,
@@ -295,15 +298,47 @@ module.exports = grammar({
       $.number,
       optional(choice("l","s","d","f","b"))
     ),
+    container: $ => seq(
+      CONSTS.NAMESPACE,
+      CONSTS.IDENTIFIER,
+      repeat1(
+        seq(
+          ".",
+          choice(
+            CONSTS.IDENTIFIER,
+            $.number
+          )
+        )
+      )
+    ),
+    namespaced_container: $ => token(seq(
+      CONSTS.IDENTIFIER,
+      ".",
+      CONSTS.IDENTIFIER,
+      ":",
+      CONSTS.IDENTIFIER,
+      ".",
+      CONSTS.IDENTIFIER
+    )),
     item: $ => seq(
       optional(CONSTS.NAMESPACE),
       CONSTS.IDENTIFIER,
-      optional(
-        choice(
+      choice(
+        $.item_state,
+        $.item_nbt,
+        seq(
+          $.item_nbt,
+          $.item_state
+        ),
+        seq(
           $.item_state,
           $.item_nbt
         )
       )
+    ),
+    _blank_item_with_namespace: $ => seq(
+      CONSTS.NAMESPACE,
+      CONSTS.IDENTIFIER
     ),
     item_nbt: $ => $.nbt_object,
     item_state: $ => seq(
@@ -340,28 +375,6 @@ module.exports = grammar({
         )
       )
     ),
-    container: $ => seq(
-      optional(CONSTS.NAMESPACE),
-      CONSTS.IDENTIFIER,
-      repeat1(
-        seq(
-          ".",
-          choice(
-            CONSTS.IDENTIFIER,
-            $.number
-          )
-        )
-      )
-    ),
-    namespaced_container: $ => token(seq(
-      CONSTS.IDENTIFIER,
-      ".",
-      CONSTS.IDENTIFIER,
-      ":",
-      CONSTS.IDENTIFIER,
-      ".",
-      CONSTS.IDENTIFIER
-    )),
     nbt_path: $ => /(\w+[A-Za-z_]|("[^"]+"))(((\.)(\w+[A-Za-z_]|("[^"]+")))+|(\[\s*\d+\s*\])+)+\.?/
   }
 });
