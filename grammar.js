@@ -361,7 +361,6 @@ module.exports = grammar({
       ".",
       CONSTS.IDENTIFIER
     )),
-    nbt_path: $ => /(\w+[A-Za-z_]|("[^"]+"))(((\.)(\w+[A-Za-z_]|("[^"]+")))+|(\[\s*\d+\s*\])+)+\.?/,
     nbt_path: $ => token(
       seq(
         choice(
