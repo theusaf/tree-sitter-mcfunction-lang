@@ -37,11 +37,19 @@
           "named": true
         },
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "item",
           "named": true
         },
         {
           "type": "location",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         },
         {
@@ -98,8 +106,16 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
         {
           "type": "number",
           "named": true
@@ -155,11 +171,19 @@
           "named": true
         },
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "item",
           "named": true
         },
         {
           "type": "location",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         },
         {
@@ -219,19 +243,32 @@
     "fields": {}
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "item",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
         {
           "type": "item_nbt",
           "named": true
         },
         {
           "type": "item_state",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         }
       ]
@@ -430,6 +467,10 @@
       "required": true,
       "types": [
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -447,7 +488,21 @@
   {
     "type": "path",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "root",
@@ -796,6 +851,10 @@
   {
     "type": "l",
     "named": false
+  },
+  {
+    "type": "namespace",
+    "named": true
   },
   {
     "type": "namespaced_container",

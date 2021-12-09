@@ -23,7 +23,9 @@ module.exports = grammar({
     [$._legacy_execute],
     [$.command],
     [$._blank_item_with_namespace, $.path],
-    [$.nbt_path]
+    [$.nbt_path],
+    [$._command_choices, $.container, $.item, $._blank_item_with_namespace, $.path],
+    [$._command_choices, $.path]
   ],
   rules: {
     root: $ => repeat(
@@ -51,7 +53,8 @@ module.exports = grammar({
       )
     ),
     _command_choices: $ => choice(
-      $._identifier,
+      $.namespace,
+      $.identifier,
       $.number,
       $.location,
       $.rotation,
@@ -139,9 +142,10 @@ module.exports = grammar({
       "store"
     ),
     _line_separator: $ => "\n",
-    text: $ => /[A-Za-z_]+/,
+    identifier: $ => CONSTS.IDENTIFIER,
+    namespace: $ => CONSTS.NAMESPACE,
+    text: $ => CONSTS.WORD,
     command_name: $ => CONSTS.IDENTIFIER,
-    _identifier: $ => CONSTS.WORD,
     number: $ => /-?\d+(\.\d+)?/,
     boolean: $ => choice("true", "false"),
     coordinate: $ => choice($.number, seq("~", optional($.number)), seq("^", $.number)),
@@ -170,7 +174,7 @@ module.exports = grammar({
     _escape_sequence: $ => seq("\\", "\""),
     nbt_path: $ => seq(
       choice(
-        $.text,
+        $.identifier,
         $.string
       ),
       repeat1(
@@ -329,13 +333,13 @@ module.exports = grammar({
       optional(choice("l","s","d","f","b"))
     ),
     container: $ => seq(
-      CONSTS.NAMESPACE,
-      CONSTS.IDENTIFIER,
+      $.namespace,
+      $.identifier,
       repeat1(
         seq(
           ".",
           choice(
-            CONSTS.IDENTIFIER,
+            $.identifier,
             $.number
           )
         )
@@ -351,8 +355,10 @@ module.exports = grammar({
       CONSTS.IDENTIFIER
     )),
     item: $ => seq(
-      optional(CONSTS.NAMESPACE),
-      CONSTS.IDENTIFIER,
+      optional(
+        $.namespace
+      ),
+      $.identifier,
       choice(
         $.item_state,
         $.item_nbt,
@@ -367,8 +373,8 @@ module.exports = grammar({
       )
     ),
     _blank_item_with_namespace: $ => seq(
-      CONSTS.NAMESPACE,
-      CONSTS.IDENTIFIER
+      $.namespace,
+      $.identifier
     ),
     item_nbt: $ => $.nbt_object,
     item_state: $ => seq(
@@ -395,13 +401,13 @@ module.exports = grammar({
       $.boolean
     ),
     path: $ => seq(
-      optional(CONSTS.NAMESPACE),
-      CONSTS.IDENTIFIER,
+      optional($.namespace),
+      $.identifier,
       repeat1(
         seq(
           "/",
-          optional(CONSTS.NAMESPACE),
-          CONSTS.IDENTIFIER
+          optional($.namespace),
+          $.identifier
         )
       )
     )

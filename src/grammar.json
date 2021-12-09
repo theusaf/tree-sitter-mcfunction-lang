@@ -101,7 +101,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_identifier"
+          "name": "namespace"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
         },
         {
           "type": "SYMBOL",
@@ -458,17 +462,21 @@
       "type": "STRING",
       "value": "\n"
     },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[a-z_-]+"
+    },
+    "namespace": {
+      "type": "PATTERN",
+      "value": "[a-z_-]+:"
+    },
     "text": {
       "type": "PATTERN",
-      "value": "[A-Za-z_]+"
+      "value": "[A-Za-z][\\w-]*"
     },
     "command_name": {
       "type": "PATTERN",
       "value": "[a-z_-]+"
-    },
-    "_identifier": {
-      "type": "PATTERN",
-      "value": "[A-Za-z][\\w-]*"
     },
     "number": {
       "type": "PATTERN",
@@ -642,7 +650,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "text"
+              "name": "identifier"
             },
             {
               "type": "SYMBOL",
@@ -1297,12 +1305,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "[a-z_-]+:"
+          "type": "SYMBOL",
+          "name": "namespace"
         },
         {
-          "type": "PATTERN",
-          "value": "[a-z_-]+"
+          "type": "SYMBOL",
+          "name": "identifier"
         },
         {
           "type": "REPEAT1",
@@ -1317,8 +1325,8 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "PATTERN",
-                    "value": "[a-z_-]+"
+                    "type": "SYMBOL",
+                    "name": "identifier"
                   },
                   {
                     "type": "SYMBOL",
@@ -1374,8 +1382,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "PATTERN",
-              "value": "[a-z_-]+:"
+              "type": "SYMBOL",
+              "name": "namespace"
             },
             {
               "type": "BLANK"
@@ -1383,8 +1391,8 @@
           ]
         },
         {
-          "type": "PATTERN",
-          "value": "[a-z_-]+"
+          "type": "SYMBOL",
+          "name": "identifier"
         },
         {
           "type": "CHOICE",
@@ -1431,12 +1439,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "[a-z_-]+:"
+          "type": "SYMBOL",
+          "name": "namespace"
         },
         {
-          "type": "PATTERN",
-          "value": "[a-z_-]+"
+          "type": "SYMBOL",
+          "name": "identifier"
         }
       ]
     },
@@ -1537,8 +1545,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "PATTERN",
-              "value": "[a-z_-]+:"
+              "type": "SYMBOL",
+              "name": "namespace"
             },
             {
               "type": "BLANK"
@@ -1546,8 +1554,8 @@
           ]
         },
         {
-          "type": "PATTERN",
-          "value": "[a-z_-]+"
+          "type": "SYMBOL",
+          "name": "identifier"
         },
         {
           "type": "REPEAT1",
@@ -1562,8 +1570,8 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "PATTERN",
-                    "value": "[a-z_-]+:"
+                    "type": "SYMBOL",
+                    "name": "namespace"
                   },
                   {
                     "type": "BLANK"
@@ -1571,8 +1579,8 @@
                 ]
               },
               {
-                "type": "PATTERN",
-                "value": "[a-z_-]+"
+                "type": "SYMBOL",
+                "name": "identifier"
               }
             ]
           }
@@ -1629,6 +1637,17 @@
     ],
     [
       "nbt_path"
+    ],
+    [
+      "_command_choices",
+      "container",
+      "item",
+      "_blank_item_with_namespace",
+      "path"
+    ],
+    [
+      "_command_choices",
+      "path"
     ]
   ],
   "externals": [],
