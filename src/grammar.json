@@ -634,6 +634,102 @@
         }
       ]
     },
+    "nbt_path": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "text"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "REPEAT1",
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "."
+                    },
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "text"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "string"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "REPEAT1",
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "["
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": " *"
+                    },
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "PATTERN",
+                        "value": "\\d+"
+                      },
+                      "named": true,
+                      "value": "number"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": " *"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "]"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "."
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
     "selector": {
       "type": "SEQ",
       "members": [
@@ -1482,10 +1578,6 @@
           }
         }
       ]
-    },
-    "nbt_path": {
-      "type": "PATTERN",
-      "value": "(\\w+[A-Za-z_]|(\"[^\"]+\"))(((\\.)(\\w+[A-Za-z_]|(\"[^\"]+\")))+|(\\[\\s*\\d+\\s*\\])+)+\\.?"
     }
   },
   "extras": [],
@@ -1534,6 +1626,9 @@
     [
       "_blank_item_with_namespace",
       "path"
+    ],
+    [
+      "nbt_path"
     ]
   ],
   "externals": [],

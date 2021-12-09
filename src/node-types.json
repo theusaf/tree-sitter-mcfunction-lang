@@ -422,6 +422,29 @@
     }
   },
   {
+    "type": "nbt_path",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "path",
     "named": true,
     "fields": {}
@@ -776,10 +799,6 @@
   },
   {
     "type": "namespaced_container",
-    "named": true
-  },
-  {
-    "type": "nbt_path",
     "named": true
   },
   {

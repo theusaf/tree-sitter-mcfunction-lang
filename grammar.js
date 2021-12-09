@@ -22,7 +22,8 @@ module.exports = grammar({
     [$._command_choices, $._legacy_execute],
     [$._legacy_execute],
     [$.command],
-    [$._blank_item_with_namespace, $.path]
+    [$._blank_item_with_namespace, $.path],
+    [$.nbt_path]
   ],
   rules: {
     root: $ => repeat(
@@ -167,6 +168,35 @@ module.exports = grammar({
       "\""
     ),
     _escape_sequence: $ => seq("\\", "\""),
+    nbt_path: $ => seq(
+      choice(
+        $.text,
+        $.string
+      ),
+      repeat1(
+        choice(
+          repeat1(
+            seq(
+              ".",
+              choice(
+                $.text,
+                $.string
+              )
+            )
+          ),
+          repeat1(
+            seq(
+              "[",
+              CONSTS.WHITESPACE,
+              alias(/\d+/, $.number),
+              CONSTS.WHITESPACE,
+              "]"
+            )
+          )
+        )
+      ),
+      optional(".")
+    ),
     selector: $ => seq(
       "@",
       choice("p", "a", "r", "s", "e"),
@@ -375,6 +405,6 @@ module.exports = grammar({
         )
       )
     ),
-    nbt_path: $ => /(\w+[A-Za-z_]|("[^"]+"))(((\.)(\w+[A-Za-z_]|("[^"]+")))+|(\[\s*\d+\s*\])+)+\.?/
+    // nbt_path: $ => /(\w+[A-Za-z_]|("[^"]+"))(((\.)(\w+[A-Za-z_]|("[^"]+")))+|(\[\s*\d+\s*\])+)+\.?/
   }
 });
