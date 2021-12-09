@@ -593,7 +593,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[^\"]"
+                "value": "[^\"\\n]"
               }
             ]
           }
@@ -1365,16 +1365,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "PATTERN",
-              "value": "[a-z_-]+:"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "PATTERN",
+          "value": "[a-z_-]+:"
         },
         {
           "type": "PATTERN",
@@ -1445,7 +1437,7 @@
     },
     "nbt_path": {
       "type": "PATTERN",
-      "value": "((\\w+|(\"[^\"]+\"))((\\[\\d+\\])*\\.?))+"
+      "value": "(\\w+|(\"[^\"]+\"))(((\\.)(\\w+|(\"[^\"]+\")))+|(\\[\\s*\\d+\\s*\\])+)+\\.?"
     }
   },
   "extras": [],

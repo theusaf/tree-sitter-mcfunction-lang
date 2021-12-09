@@ -21,7 +21,8 @@ module.exports = grammar({
     [$._command_choices, $.coordinate],
     [$._command_choices, $._legacy_execute],
     [$._legacy_execute],
-    [$.command]
+    [$.command],
+    // [$.nbt_path]
   ],
   rules: {
     root: $ => repeat(
@@ -157,7 +158,7 @@ module.exports = grammar({
       repeat(
         choice(
           $._escape_sequence,
-          /[^"]/
+          /[^"\n]/
         )
       ),
       "\""
@@ -340,7 +341,7 @@ module.exports = grammar({
       )
     ),
     container: $ => seq(
-      optional(CONSTS.NAMESPACE),
+      CONSTS.NAMESPACE,
       CONSTS.IDENTIFIER,
       repeat1(
         seq(
@@ -361,6 +362,42 @@ module.exports = grammar({
       ".",
       CONSTS.IDENTIFIER
     )),
-    nbt_path: $ => /((\w+|("[^"]+"))((\[\d+\])*\.?))+/
+    // nbt_path: $ => prec(2, seq(
+    //   seq(
+    //     choice(
+    //       /\w+[A-Za-z_]/,
+    //       $.string
+    //     ),
+    //     repeat1(
+    //       choice(
+    //         prec.right(1, repeat1(
+    //           seq(
+    //             ".",
+    //             choice(
+    //               /\w+[A-Za-z_]/,
+    //               $.string
+    //             )
+    //           )
+    //         )),
+    //         prec.right(1, repeat1(
+    //           seq(
+    //             "[",
+    //             CONSTS.WHITESPACE,
+    //             $.number,
+    //             CONSTS.WHITESPACE,
+    //             "]"
+    //           )
+    //         ))
+    //       )
+    //     )
+    //   ),
+    //   optional(".")
+    // )),
+
+    nbt_path: $ => /(\w+|("[^"]+"))(((\.)(\w+|("[^"]+")))+|(\[\s*\d+\s*\])+)+\.?/
+
+    // /((\w+|"[^"]*")(\[\s+\d+\s+\])?\.?)+/
+
+    // nbt_path: $ => /((\w+|("[^"]+"))((\[\d+\])*\.?))+/
   }
 });
