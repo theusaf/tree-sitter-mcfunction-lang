@@ -884,12 +884,25 @@
           "value": "="
         },
         {
-          "type": "PATTERN",
-          "value": " *"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "selector_value"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": " *"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "selector_value"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -1679,6 +1692,9 @@
     [
       "_command_choices",
       "path"
+    ],
+    [
+      "selector_option"
     ]
   ],
   "externals": [],

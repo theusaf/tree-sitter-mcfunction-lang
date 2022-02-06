@@ -25,7 +25,8 @@ module.exports = grammar({
     [$._blank_item_with_namespace, $.path],
     [$.nbt_path],
     [$._command_choices, $.container, $.item, $._blank_item_with_namespace, $.path],
-    [$._command_choices, $.path]
+    [$._command_choices, $.path],
+    [$.selector_option]
   ],
   rules: {
     root: $ => repeat(
@@ -230,8 +231,12 @@ module.exports = grammar({
         $.selector_key,
         CONSTS.WHITESPACE,
         "=",
-        CONSTS.WHITESPACE,
-        $.selector_value
+        optional(
+          seq(
+            CONSTS.WHITESPACE,
+            $.selector_value
+          )
+        )
     ),
     selector_key: $ => CONSTS.IDENTIFIER,
     selector_value: $ => choice(
