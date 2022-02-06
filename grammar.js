@@ -34,7 +34,7 @@ module.exports = grammar({
         $.comment,
         $._line_separator,
         alias($.execute_command, $.command),
-        alias($._legacy_execute, $.execute_command)
+        alias($._legacy_execute, $.command)
       )
     ),
     comment: $ => CONSTS.COMMENT,
@@ -96,38 +96,43 @@ module.exports = grammar({
     _legacy_execute: $ => seq(
       optional("/"),
       alias("execute", $.command_name),
-      repeat(
-        seq(
-          " ",
-          choice($.selector, CONSTS.NBT_IDENTIFIER),
-          " ",
-          $.location,
-          optional(
-            seq(
-              alias(" detect ", $.execute_keyword),
-              $.location,
-              " ",
+      seq(
+        " ",
+        choice($.selector, $.nbt_identifier),
+        " ",
+        $.location,
+        " ",
+        optional(
+          seq(
+            alias("detect", $.execute_keyword),
+            " ",
+            $.location,
+            " ",
+            choice(
               $.item,
-              " ",
-              choice(
-                $.number,
-                seq(
-                  $.state_key,
-                  "=",
-                  $.state_value
-                ),
-                "*"
-              )
-            )
-          ),
-          " ",
-          choice(
-            alias($._legacy_execute, $.execute_command),
-            $.command
+              $.identifier,
+              alias($._blank_item_with_namespace, $.item)
+            ),
+            " ",
+            choice(
+              $.number,
+              seq(
+                $.state_key,
+                "=",
+                $.state_value
+              ),
+              "*"
+            ),
+            " "
           )
+        ),
+        choice(
+          alias($._legacy_execute, $.command),
+          $.command
         )
       )
     ),
+    _legacy_execute_keyword: $ => " detect ",
     execute_keyword: $ => choice(
       "in",
       "if",
@@ -142,10 +147,11 @@ module.exports = grammar({
       "store"
     ),
     _line_separator: $ => "\n",
+    nbt_identifier: $ => CONSTS.NBT_IDENTIFIER,
     identifier: $ => CONSTS.IDENTIFIER,
     namespace: $ => CONSTS.NAMESPACE,
     text: $ => CONSTS.WORD,
-    command_name: $ => CONSTS.IDENTIFIER,
+    command_name: $ => $.identifier,
     number: $ => /-?\d+(\.\d+)?/,
     boolean: $ => choice("true", "false"),
     coordinate: $ => choice($.number, seq("~", optional($.number)), seq("^", $.number)),
@@ -320,7 +326,7 @@ module.exports = grammar({
     nbt_object_key: $ => choice(
       $.string,
       $.number,
-      CONSTS.NBT_IDENTIFIER
+      $.nbt_identifier
     ),
     nbt_object_value: $ => choice(
       $.string,

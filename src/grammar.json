@@ -34,7 +34,7 @@
               "name": "_legacy_execute"
             },
             "named": true,
-            "value": "execute_command"
+            "value": "command"
           }
         ]
       }
@@ -285,129 +285,156 @@
           "value": "command_name"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": " "
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "selector"
-                  },
-                  {
-                    "type": "PATTERN",
-                    "value": "[A-Za-z]\\w*"
-                  }
-                ]
-              },
-              {
-                "type": "STRING",
-                "value": " "
-              },
-              {
-                "type": "SYMBOL",
-                "name": "location"
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "STRING",
-                          "value": " detect "
-                        },
-                        "named": true,
-                        "value": "execute_keyword"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "location"
-                      },
-                      {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": " "
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "selector"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "nbt_identifier"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": " "
+            },
+            {
+              "type": "SYMBOL",
+              "name": "location"
+            },
+            {
+              "type": "STRING",
+              "value": " "
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "ALIAS",
+                      "content": {
                         "type": "STRING",
-                        "value": " "
+                        "value": "detect"
                       },
-                      {
-                        "type": "SYMBOL",
-                        "name": "item"
-                      },
-                      {
-                        "type": "STRING",
-                        "value": " "
-                      },
-                      {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "number"
-                          },
-                          {
-                            "type": "SEQ",
-                            "members": [
-                              {
-                                "type": "SYMBOL",
-                                "name": "state_key"
-                              },
-                              {
-                                "type": "STRING",
-                                "value": "="
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "state_value"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "STRING",
-                            "value": "*"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              },
-              {
-                "type": "STRING",
-                "value": " "
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_legacy_execute"
+                      "named": true,
+                      "value": "execute_keyword"
                     },
-                    "named": true,
-                    "value": "execute_command"
-                  },
-                  {
+                    {
+                      "type": "STRING",
+                      "value": " "
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "location"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": " "
+                    },
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "item"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "identifier"
+                        },
+                        {
+                          "type": "ALIAS",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "_blank_item_with_namespace"
+                          },
+                          "named": true,
+                          "value": "item"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "STRING",
+                      "value": " "
+                    },
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "number"
+                        },
+                        {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "state_key"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "="
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "state_value"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "*"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "STRING",
+                      "value": " "
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
                     "type": "SYMBOL",
-                    "name": "command"
-                  }
-                ]
-              }
-            ]
-          }
+                    "name": "_legacy_execute"
+                  },
+                  "named": true,
+                  "value": "command"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "command"
+                }
+              ]
+            }
+          ]
         }
       ]
+    },
+    "_legacy_execute_keyword": {
+      "type": "STRING",
+      "value": " detect "
     },
     "execute_keyword": {
       "type": "CHOICE",
@@ -462,6 +489,10 @@
       "type": "STRING",
       "value": "\n"
     },
+    "nbt_identifier": {
+      "type": "PATTERN",
+      "value": "[A-Za-z]\\w*"
+    },
     "identifier": {
       "type": "PATTERN",
       "value": "[a-z_-]+"
@@ -475,8 +506,8 @@
       "value": "[A-Za-z][\\w-]*"
     },
     "command_name": {
-      "type": "PATTERN",
-      "value": "[a-z_-]+"
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "number": {
       "type": "PATTERN",
@@ -1233,8 +1264,8 @@
           "name": "number"
         },
         {
-          "type": "PATTERN",
-          "value": "[A-Za-z]\\w*"
+          "type": "SYMBOL",
+          "name": "nbt_identifier"
         }
       ]
     },
