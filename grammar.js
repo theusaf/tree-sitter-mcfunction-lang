@@ -51,6 +51,11 @@ module.exports = grammar({
           " ",
           $._command_choices
         )
+      ),
+      optional(
+        repeat(
+          " "
+        )
       )
     ),
     _command_choices: $ => choice(

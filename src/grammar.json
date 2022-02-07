@@ -93,6 +93,21 @@
               }
             ]
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "STRING",
+                "value": " "
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
