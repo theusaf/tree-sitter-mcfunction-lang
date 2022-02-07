@@ -1,10 +1,14 @@
 {
   "name": "tree-sitter-mcfunction-lang",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "tree sitter for mcfunction-lang",
   "main": "bindings/node",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theusaf/tree-sitter-mcfunction-lang.git"
   },
   "author": "theusaf",
   "license": "MIT",
