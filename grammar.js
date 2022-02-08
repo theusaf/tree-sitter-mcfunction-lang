@@ -56,7 +56,8 @@ module.exports = grammar({
         repeat(
           " "
         )
-      )
+      ),
+      optional("\n")
     ),
     _command_choices: $ => choice(
       $.namespace,

@@ -1,1 +1,2 @@
-setblock ~ ~ ~ chest[facing=north]{List:[{foo:"bar"}]}
+say hi
+clone ~ ~ ~ ~ ~ ~ ~ ~ ~ filtered force minecraft:cobblestone
