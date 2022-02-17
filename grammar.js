@@ -185,6 +185,19 @@ module.exports = grammar({
       "\""
     ),
     _escape_sequence: $ => seq("\\", "\""),
+    container: $ => seq(
+      optional($.namespace),
+      $.identifier,
+      repeat1(
+        seq(
+          ".",
+          choice(
+            $.identifier,
+            $.number
+          )
+        )
+      )
+    ),
     nbt_path: $ => seq(
       choice(
         $.identifier,
@@ -348,19 +361,6 @@ module.exports = grammar({
     nbt_number: $ => seq(
       $.number,
       optional(choice("l","s","d","f","b"))
-    ),
-    container: $ => seq(
-      $.namespace,
-      $.identifier,
-      repeat1(
-        seq(
-          ".",
-          choice(
-            $.identifier,
-            $.number
-          )
-        )
-      )
     ),
     namespaced_container: $ => token(seq(
       CONSTS.IDENTIFIER,
