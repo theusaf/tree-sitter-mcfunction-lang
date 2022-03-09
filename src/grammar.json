@@ -198,6 +198,10 @@
         {
           "type": "SYMBOL",
           "name": "text"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "wildcard"
         }
       ]
     },
@@ -548,6 +552,10 @@
     "number": {
       "type": "PATTERN",
       "value": "-?\\d+(\\.\\d+)?"
+    },
+    "wildcard": {
+      "type": "STRING",
+      "value": "*"
     },
     "boolean": {
       "type": "CHOICE",

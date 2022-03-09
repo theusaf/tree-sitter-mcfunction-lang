@@ -76,7 +76,8 @@ module.exports = grammar({
       $.nbt,
       $.tag,
       $.namespaced_container,
-      $.text
+      $.text,
+      $.wildcard
     ),
     execute_command: $ => seq(
       optional("/"),
@@ -160,6 +161,7 @@ module.exports = grammar({
     text: $ => CONSTS.WORD,
     command_name: $ => choice($.identifier, "?"),
     number: $ => /-?\d+(\.\d+)?/,
+    wildcard: $ => "*",
     boolean: $ => choice("true", "false"),
     coordinate: $ => choice($.number, seq("~", optional($.number)), seq("^", $.number)),
     rotation: $ => seq(

@@ -103,6 +103,10 @@
         {
           "type": "text",
           "named": true
+        },
+        {
+          "type": "wildcard",
+          "named": true
         }
       ]
     }
@@ -246,6 +250,10 @@
         },
         {
           "type": "text",
+          "named": true
+        },
+        {
+          "type": "wildcard",
           "named": true
         }
       ]
@@ -751,6 +759,11 @@
   },
   {
     "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "wildcard",
     "named": true,
     "fields": {}
   },
