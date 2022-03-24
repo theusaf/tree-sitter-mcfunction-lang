@@ -26,27 +26,37 @@ module.exports = grammar({
     [$.nbt_path],
     [$._command_choices, $.container, $.item, $._blank_item_with_namespace, $.path],
     [$._command_choices, $.path],
-    [$.selector_option]
+    [$.selector_option],
+    [$.container],
+    [$.tag]
   ],
   rules: {
     root: $ => repeat(
       choice(
         $.command,
         $.comment,
+        $.bad_command,
         $._line_separator,
         alias($.execute_command, $.command),
         alias($._legacy_execute, $.command)
       )
     ),
-    tag: $ => token(
-      seq(
-        "#",
-        optional(CONSTS.IDENTIFIER)
+    tag: $ => seq(
+      $._hash,
+      optional(CONSTS.IDENTIFIER)
+    ),
+    comment: $ => seq(
+      $._hash,
+      /.*/
+    ),
+    bad_command: $ => seq(
+      "/",
+      choice(
+        alias($.execute_command, $.command),
+        $.command
       )
     ),
-    comment: $ => CONSTS.COMMENT,
     command: $ => seq(
-      optional("/"),
       $.command_name,
       repeat(
         seq(
@@ -82,7 +92,6 @@ module.exports = grammar({
       $.wildcard
     ),
     execute_command: $ => seq(
-      optional("/"),
       seq(
         alias("execute", $.command_name),
         repeat(
@@ -156,7 +165,7 @@ module.exports = grammar({
       "rotated",
       "store"
     ),
-    _line_separator: $ => "\n",
+    _line_separator: $ => /\r?\n/,
     nbt_identifier: $ => CONSTS.NBT_IDENTIFIER,
     identifier: $ => CONSTS.IDENTIFIER,
     namespace: $ => CONSTS.NAMESPACE,
@@ -164,6 +173,7 @@ module.exports = grammar({
     command_name: $ => choice($.identifier, "?"),
     number: $ => /-?\d+(\.\d+)?/,
     wildcard: $ => "*",
+    _hash: $ => "#",
     boolean: $ => choice("true", "false"),
     coordinate: $ => choice($.number, seq("~", optional($.number)), seq("^", $.number)),
     rotation: $ => seq(
@@ -214,7 +224,8 @@ module.exports = grammar({
               ".",
               choice(
                 $.text,
-                $.string
+                $.string,
+                $.identifier
               )
             )
           ),

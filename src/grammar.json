@@ -16,6 +16,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "bad_command"
+          },
+          {
+            "type": "SYMBOL",
             "name": "_line_separator"
           },
           {
@@ -40,48 +44,69 @@
       }
     },
     "tag": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "#"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "PATTERN",
-                "value": "[a-z_-]+"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "comment": {
-      "type": "PATTERN",
-      "value": "#.*"
-    },
-    "command": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_hash"
+        },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "/"
+              "type": "PATTERN",
+              "value": "[a-z_-]+"
             },
             {
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "comment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_hash"
         },
+        {
+          "type": "PATTERN",
+          "value": ".*"
+        }
+      ]
+    },
+    "bad_command": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "/"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "execute_command"
+              },
+              "named": true,
+              "value": "command"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "command"
+            }
+          ]
+        }
+      ]
+    },
+    "command": {
+      "type": "SEQ",
+      "members": [
         {
           "type": "SYMBOL",
           "name": "command_name"
@@ -216,18 +241,6 @@
     "execute_command": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "/"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
         {
           "type": "SEQ",
           "members": [
@@ -525,8 +538,8 @@
       ]
     },
     "_line_separator": {
-      "type": "STRING",
-      "value": "\n"
+      "type": "PATTERN",
+      "value": "\\r?\\n"
     },
     "nbt_identifier": {
       "type": "PATTERN",
@@ -564,6 +577,10 @@
     "wildcard": {
       "type": "STRING",
       "value": "*"
+    },
+    "_hash": {
+      "type": "STRING",
+      "value": "#"
     },
     "boolean": {
       "type": "CHOICE",
@@ -811,6 +828,10 @@
                         {
                           "type": "SYMBOL",
                           "name": "string"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "identifier"
                         }
                       ]
                     }
@@ -1755,6 +1776,12 @@
     ],
     [
       "selector_option"
+    ],
+    [
+      "container"
+    ],
+    [
+      "tag"
     ]
   ],
   "externals": [],

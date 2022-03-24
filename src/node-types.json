@@ -1,5 +1,20 @@
 [
   {
+    "type": "bad_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "boolean",
     "named": true,
     "fields": {}
@@ -125,6 +140,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "container",
@@ -539,6 +559,10 @@
       "required": false,
       "types": [
         {
+          "type": "bad_command",
+          "named": true
+        },
+        {
           "type": "command",
           "named": true
         },
@@ -763,6 +787,11 @@
     "fields": {}
   },
   {
+    "type": "tag",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "wildcard",
     "named": true,
     "fields": {}
@@ -848,10 +877,6 @@
     "named": false
   },
   {
-    "type": "comment",
-    "named": true
-  },
-  {
     "type": "d",
     "named": false
   },
@@ -922,10 +947,6 @@
   {
     "type": "store",
     "named": false
-  },
-  {
-    "type": "tag",
-    "named": true
   },
   {
     "type": "text",
