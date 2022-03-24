@@ -38,11 +38,13 @@ module.exports = grammar({
         alias($._legacy_execute, $.command)
       )
     ),
+    tag: $ => token(
+      seq(
+        "#",
+        optional(CONSTS.IDENTIFIER)
+      )
+    ),
     comment: $ => CONSTS.COMMENT,
-    tag: $ => token(seq(
-      "#",
-      optional(CONSTS.IDENTIFIER)
-    )),
     command: $ => seq(
       optional("/"),
       $.command_name,
