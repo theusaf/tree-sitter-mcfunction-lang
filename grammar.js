@@ -41,7 +41,7 @@ module.exports = grammar({
     comment: $ => CONSTS.COMMENT,
     tag: $ => token(seq(
       "#",
-      CONSTS.IDENTIFIER
+      optional(CONSTS.IDENTIFIER)
     )),
     command: $ => seq(
       optional("/"),
@@ -57,7 +57,7 @@ module.exports = grammar({
           " "
         )
       ),
-      optional("\n")
+      optional($._line_separator)
     ),
     _command_choices: $ => choice(
       $.namespace,

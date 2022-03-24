@@ -53,8 +53,16 @@
             "value": "#"
           },
           {
-            "type": "PATTERN",
-            "value": "[a-z_-]+"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[a-z_-]+"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }
@@ -113,8 +121,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "\n"
+              "type": "SYMBOL",
+              "name": "_line_separator"
             },
             {
               "type": "BLANK"
